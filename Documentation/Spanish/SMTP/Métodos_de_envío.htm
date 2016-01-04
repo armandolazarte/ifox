@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Métodos de Envío</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.SMTP</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>M&eacute;todos de Env&iacute;o</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>iFox.SMTP</b> permite utilizar diferentes m&eacute;todos de env&iacute;o 
+  de acuerdo a sus necesidades.<br>
+  <br>
+  <br>
+  <b>M&eacute;todo 1</b>: En este caso el mensaje debe ser enviado de una forma 
+  f&aacute;cil y r&aacute;pida. No hace falta enviar m&uacute;ltiples mensajes 
+  o controlar su progreso.<br>
+  <br>
+  <pre>oSMTP = CreateObject(&quot;iFox.SMTP&quot;)<br>oSMTP.SenderEMail = &quot;john@acmecorp.com&quot;<br>oSMTP.AddRecipient(&quot;Peter&quot;, &quot;peter@acmecorp.com&quot;) <br>oSMTP.ConnectSend(&quot;acmecorp.com&quot;)<br></pre>
+  <br>
+  <b>M&eacute;todo 2</b>: En este caso es necesario enviar m&uacute;ltiples mensajes. 
+  Se utilizar&aacute; una sola conexi&oacute;n para evitar sobrecargar al servidor.<br>
+  <br>
+  <pre>oSMTP = CreateObject(&quot;iFox.SMTP&quot;)<br>oSMTP.Connect(&quot;acmecorp.com&quot;) <br>
+oSMTP.SenderEMail = &quot;john@acmecorp.com&quot;<br>oSMTP.AddRecipient(&quot;Peter&quot;, &quot;peter@acmecorp.com&quot;) <br>oSMTP.Send() <br>
+<br>oSMTP.NewMessage()
+oSMTP.SenderEMail = &quot;john@acmecorp.com&quot;<br>oSMTP.AddRecipient(&quot;Laura&quot;, &quot;laura@acmecorp.com&quot;) <br>oSMTP.Send() <br>
+oSMTP.Disconnect()
+</pre>
+  <br>
+  <b>M&eacute;todo 3</b>: En este caso se desea mostrar al usuario el progreso 
+  del env&iacute;o.<br>
+  <br>
+  <pre>oSMTP = CreateObject(&quot;iFox.SMTP&quot;)<br>oSMTP.Connect(&quot;acmecorp.com&quot;) <br>
+oSMTP.SenderEMail = &quot;john@acmecorp.com&quot;<br>oSMTP.AddRecipient(&quot;Peter&quot;, &quot;peter@acmecorp.com&quot;) <br>
+If oSMTP.StartPartialSending()
+
+   lError = .F.
+   Do While !oSMTP.EOD
+      If oSMTP.SendSextPart()<br>         ? &quot;Bytes enviados: &quot; + Str(oSMTP.GetCurrentPosition())
+      else
+         lError = .T.
+         Exit
+      Endif
+   Enddo
+
+   If !lErrof
+      oSMTP.EndPartialSending()
+   Endif
+<br>Endif <br>
+oSMTP.Disconnect()
+</pre>
+</div>
+<hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+<html><head><style>
+BODY
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 8pt;
+}
+
+
+A
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    TEXT-DECORATION:underline;
+}
+
+
+A:HOVER
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 8pt;
+    COLOR: red;
+    TEXT-DECORATION:underline;
+}
+
+
+.top
+{
+    BORDER-RIGHT: 1px outset;
+    BORDER-TOP: 1px outset;
+    BORDER-LEFT: 1px outset;
+    BORDER-BOTTOM: 1px outset;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt;
+    BACKGROUND-COLOR: #9ccfff
+}
+
+
+.text
+{
+   padding: 0px 5px 0px 10px;
+   FONT-FAMILY: Verdana;
+   FONT-SIZE: 8pt;
+}
+
+
+.tabletext
+{
+   FONT-FAMILY: Verdana;
+   FONT-SIZE: 8pt;
+}
+
+
+div.tablediv
+{
+   width: 100%;
+   margin-top: -.4em;
+}
+
+
+table.htmltable
+	{
+	width: 100%;
+	margin-top: .6em;
+	margin-bottom: .3em;
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #999999;
+	background-color: #999999; 
+	font-size: 100%;
+	}
+table.htmltable th, table.htmltable td
+	{ 
+	border-style: solid;
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #999999;
+	padding: 4px 6px;
+	text-align: left;
+	}
+table.htmltable th	
+	{ 
+	background: #cccccc;
+	vertical-align: bottom;
+	}
+table.htmltable td	
+	{
+	background: #ffffff;
+	vertical-align: top;
+	}
+
+</style>
+
+
+
+
+<title>Resume&amp;Go: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.Resume&Go</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>TransferType</b></td>
+        <td>
+          <p>Value type: <b>Integer</b> <br>
+            Default value: <b>TYPE_FILE</b><br>
+          </p>
+          <p>If the value of this property is <b>TYPE_FILE</b>, download proceeds 
+            right to the file indicated by the <b>FileName</b> property.</p>
+          <p>If the value of this property is <b>TYPE_MEMORY</b>, download proceeds 
+            in memory and it can be retrieved with the method <b>GetPartialDownload</b>.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>FileName</b></td>
+        <td> 
+          <p>Value type: <b>String</b> <br>
+            <br>
+            If the value of <b>TransferType </b>property is <b>TYPE_FILE</b>, 
+            this property must contain the local file name where the remote file 
+            will be downloaded.</p>
+          <p>If the value of <b>TransferType </b>property is <b>TYPE_MEMORY</b>, 
+            this property is ignored.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>FileSize</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            After a succesful call to the <b>StartHTTPTransfer</b> method this 
+            property will hold the byte size of the file to download.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadSize</b></td>
+        <td> 
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            After a succesful call to the <b>StartHTTPTransfer</b> method this 
+            property will hold the byte count to download. </p>
+          <p>In case of a partial transfer, <b>FileSize</b> property will indicate 
+            the total file size and <b>DownloadSize</b> the remaining bytes to 
+            download.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadComplete</b></td>
+        <td>
+          <p>Value type: <b>Logical</b> <br>
+            <br>
+            Indicates when transfer is complete.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadedBytes</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            Indicates the quantity of bytes transferred until now. This property 
+            value will vary between zero and the value indicated by the <b>DownloadSize</b> 
+            property.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>PreviousDownload</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            Indicates the amount of bytes transferred in a previous download. 
+            The sum of this property and the value of <b>DownloadedBytes</b> property 
+            will indicate the total size downloaded in all sessions.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td>Value type: <b>Long</b> 
+          <p>In case of an error, this property will hold the related error number. 
+            Possible values are:</p>
+          <p>1. Unable to initialize <b>iFox.Sockets</b>.<br>
+            2. Unable to determine the server IP address.<br>
+            3. Unable to establish communication with the given server.<br>
+            4. No response from server.<br>
+            5. Server doesn't support the HTTP 1.1 protocol.<br>
+            6. Server doesn't support partial downloads.<br>
+            7. File is already completely downloaded.<br>
+            8. Local file has not being indicated in <b>FileName</b> property.<br>
+            9. Unable to open the file indicated by <b>FileName</b> property.<br>
+            10. Response from server is invalid.<br>
+            <br>
+            101. Communication error (only for <b>DownloadNextPart</b>).<br>
+            102. Write error (only for <b>DownloadNextPart</b>).</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>StartHTTPTransfer</b></td>
+        <td> <p>Parameters: <strong>cServer as String, cURL as String, nStart 
+            as Long (optional), nPort as Integer (optional), nTimeOut as Integer 
+            (optional), lDynamic as Boolean (optional) </strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Returns the content of the URL indicated by <b>cURL</b> parameter. 
+            The server part of the URL must be indicated in the <strong>cServer</strong> 
+            parameter. <br>
+            <br>
+            The <strong>nStart</strong> parameter indicates the position where 
+            the download start, if not indicated the file is fully downloaded.<br>
+            <br>
+            The <strong>nPort</strong> parameter indicates the port number to 
+            use, if not indicated the default HTTP port (80) will be used.<br>
+            <br>
+            The <strong>nTimeOut</strong> parameter indicates the time (in seconds) 
+            to wait for the server response, if not indicated the component will 
+            wait for 15 seconds.<br>
+            <br>
+        Sometimes <strong>iFox.Resume&amp;Go</strong> cannot download a file generated by a dynamic page (by ASP, PHP, etc.) because of the different HTTP headers received. You must set the <strong>lDynamic</strong> parameter to true if you're having trouble with dynamically generated downloads. </p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadNextPart</b></td>
+        <td>
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>String</strong><br>
+            <br>
+            Continues a transfer initiated by <b>StartHTTPTransfer</b>. </p>
+          <p>Return value indicates if the operation has being succesful.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>GetZeroCount</b></td>
+        <td> 
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>Integer</strong><br>
+            <br>
+            During tests on memory handled downloads has being determined that 
+            in some ocassions, if the first data block contains an ASCII 0 (zero), 
+            a call to <b>GetPartialDownload</b> can produce erroneous results.</p>
+          <p>To solve this problem an alternative solution have been implemented, 
+            involving the usage of this method to determine if the first data 
+            block contains the value ASCII 0 (zero) and adding them to the client 
+            application because the <b>GetPartialDownload</b> method deletes the 
+            problematic values at the beginning of the string automatically. For 
+            a better understanting of this solution it is suggested that you check 
+            the provided samples.<br>
+          </p>
+          <p>Disk downloads doesn't suffer from this problem.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>GetPartialDownload</b></td>
+        <td> 
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>String</strong><br>
+            <br>
+            If the value of <b>TransferType </b>property is <b>TYPE_MEMORY</b>, 
+            this method returns the content trasnferred until now. </p>
+          <p>If the value of <b>TransferType </b>property is <b>TYPE_FILE</b>, 
+            this method returns an empty string.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>ClearDownLoadData</b></td>
+        <td> 
+          <p><b>Parameters:</b> None<br>
+            <br>
+            <b>Return:</b> None<br>
+            <br>
+            If the value of <b>TransferType </b>property is <b>TYPE_MEMORY</b>, 
+            this method clears the download buffer. This is useful to limit memory 
+            usage and to avoid getting the same data in subsequent calls to <b>GetPartialDownload</b>.</p>
+          </td>
+      </tr>
+      <tr>
+        <td><b>EndTransfer</b></td>
+        <td>
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>None</strong><br>
+            <br>
+            Ends a transfer initiated by <b>StartHTTPTransfer</b>.</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

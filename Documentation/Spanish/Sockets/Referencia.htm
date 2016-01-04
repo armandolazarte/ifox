@@ -1,0 +1,386 @@
+<html>
+<head>
+<title>Sockets: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.Sockets</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+
+      <tr> 
+        <td><b>PingAddress</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Luego de una llamada exitosa al m&eacute;todo <b>Ping</b> esta propiedad 
+          indicar&aacute; la direcci&oacute;n del servidor que realmente devolvi&oacute; 
+          la respuesta.</td>
+      </tr>
+
+      <tr>
+        <td><b>PingError</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          Luego de una llamada fallida al m&eacute;todo <b>Ping</b> esta propiedad 
+          indicar&aacute; el n&uacute;mero de error obtenido.</td>
+      </tr>
+
+      <tr> 
+        <td><b>PingResponseSize</b></td>
+        <td>Tipo de valor: <b>Integer</b> <br>
+          <br>
+          Luego de una llamada al m&eacute;todo <b>Ping</b> esta propiedad indicar&aacute; 
+          el tama&ntilde;o en bytes de la respuesta obtenida.</td>
+      </tr>
+
+      <tr> 
+        <td><b>PingTime</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          Luego de una llamada exitosa al m&eacute;todo <b>Ping</b> esta propiedad 
+          indicar&aacute; el tiempo de respuesta obtenido (en milisegundos).</td>
+      </tr>
+
+      <tr> 
+        <td><b>Response</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+          Luego de una llamada exitosa a los m&eacute;todos <b>SendReceive</b>, 
+          <b>WaitFor</b> o <b>WaitForSize</b> esta propiedad contendr&aacute; 
+          la respuesta recibida.</td>
+      </tr>
+
+      <tr> 
+        <td><b>SocketClosed</b></td>
+        <td>Tipo de valor: <b>Logical</b><br>
+          <br>
+          Luego de una llamada al m&eacute;todo <b>Read</b> esta propiedad permite 
+          determinar si el socket ha sido desconectado por la otra aplicaci&oacute;n.</td>
+      </tr>
+
+      <tr> 
+        <td><b>StartOK</b></td>
+        <td>Tipo de valor: <b>Logical</b><br>
+          <br>
+          Indica que los servicios Winsock han podido iniciarse correctamente. 
+          El valor de esta propiedad se establece durante la creaci&oacute;n del 
+          objeto y permite determina si el usuario posee la versi&oacute;n correcta 
+          de Winsock. Si el valor de esta propiedad es falso todas las llamadas 
+          a los m&eacute;todos del objeto ser&aacute;n rechazados.</td>
+      </tr>
+
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+
+      <tr> 
+        <td><b>AcceptConnections</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>Ninguna</strong></p>
+          Verifica si existe alguna conexi&oacute;n pendiente de aceptaci&oacute;n, 
+          si existiera se la acepta y se devuelve como resultado el n&uacute;mero 
+          de socket asignado a la conexi&oacute;n. Si no existen conexiones pendientes 
+          el valor devuelto ser&aacute; cero.<br>
+          <br>
+          El par&aacute;metro <strong>nSocket</strong> indica el n&uacute;mero 
+          de socket obtenido por una llamada exitosa al m&eacute;todo <b>Listen</b>.<br>
+          <br>
+          Como los objetos COM creados utilizando Visual FoxPro no permiten desencadenar 
+          eventos una aplicaci&oacute;n servidor creada usando <b>iFox.Sockets</b> 
+          debe continuamente llamar a este m&eacute;todo con el fin de aceptar 
+          las conexiones efectuadas por los clientes.<br>
+          <br>
+        </td>
+      </tr>
+
+      <tr> 
+        <td><b>Close</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>Ninguna</strong></p>
+          Cierra un socket creado por los m&eacute;todos <b>Connect</b> o <b>Listen</b>.</td>
+      </tr>
+
+      <tr> 
+        <td><b>Connect</b></td>
+        <td>Par&aacute;metros: <strong>cHost as String, nPort as Long </strong> 
+          <p>Respuesta: <strong>Long</strong></p>
+          Establece una conexi&oacute;n con el servidor indicado en <strong>cHost</strong>. 
+          El par&aacute;metro <strong>cHost</strong> puede contener un nombre 
+          de host (por ejemplo: <b>microsoft.com</b>) o una direcci&oacute;n IP 
+          (por ejemplo: <b>207.46.230.219</b>). <strong>nPort</strong> indica 
+          el n&uacute;mero de puerto a utilizar.<br>
+          <br>
+          Si la conexi&oacute;n puede realizarse en forma exitosa el resultado 
+          ser&aacute; el n&uacute;mero de socket correspondiente a la conexi&oacute;n 
+          realizada. Antes de liberar el objeto todos los sockets creados deber&aacute;n 
+          ser cerrados utilizando el m&eacute;todo <b>Close</b> para evitar la 
+          p&eacute;rdida de recursos.<br>
+          <br>
+          Si la conexi&oacute;n no pudo realizarse el valor devuelto ser&aacute; 
+          cero. </td>
+      </tr>
+
+      <tr> 
+        <td><b>GetIPFromName</b></td>
+        <td>Par&aacute;metros: <strong>cHost as String </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve la direcci&oacute;n IP correspondiente al host indicado en 
+          <strong>cHost</strong>. Si existiera m&aacute;s de una se utilizar&aacute; 
+          como separador una coma. En caso de error se devolver&aacute; una cadena 
+          vac&iacute;a.</td>
+      </tr>
+      <tr> 
+        <td><b>GetNameFromIP</b></td>
+        <td>Par&aacute;metros: <strong>cIP as String </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve el nombre de host correspondiente a una direcci&oacute;n IP. 
+          Si existiera m&aacute;s de una se utilizar&aacute; como separador una 
+          coma. En caso de error se devolver&aacute; una cadena vac&iacute;a.</td>
+      </tr>
+
+      <tr> 
+        <td><b>GetLocalHost</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve el nombre de host local para una conexi&oacute;n determinada</td>
+      </tr>
+      <tr> 
+        <td><b>GetLocalHostIP</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve la direcci&oacute;n IP local para una conexi&oacute;n determinada</td>
+      </tr>
+
+      <tr> 
+        <td><b>GetPort</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>Long</strong></p>
+          Devuelve el n&uacute;mero de puerto al que se encuentra conectado un 
+          socket. En caso de error se devolver&aacute; el valor -1</td>
+      </tr>
+
+
+      <tr> 
+        <td><b>GetRemoteHost</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve el nombre de host remoto para una conexi&oacute;n determinada</td>
+      </tr>
+      <tr> 
+        <td><b>GetRemoteHostIP</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve la direcci&oacute;n IP remota para una conexi&oacute;n determinada</td>
+      </tr>
+
+      <tr> 
+        <td><b>IPAddress</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Devuelve la direcci&oacute;n IP asignada a la estaci&oacute;n de trabajo. 
+          Si existiera m&aacute;s de una se utilizar&aacute; como separador una 
+          coma. En caso de error se devolver&aacute; una cadena vac&iacute;a.</td>
+      </tr>
+
+      <tr> 
+        <td><b>Listen</b></td>
+        <td>Par&aacute;metros: <strong>nPort as Long, cIP as String (opcional) 
+          </strong> 
+          <p>Respuesta: <strong>Long</strong></p>
+          Crea un &quot;socket de escucha&quot; que se utiliza para aceptar conexiones 
+          en aplicaciones de servidor. El par&aacute;metro <strong>nPort</strong> 
+          indica el n&uacute;mero de puerto que se debe &quot;escuchar&quot;. 
+          No puede haber m&aacute;s de un socket de escucha para el mismo puerto 
+          (creado por <b>iFox.Sockets</b> o por cualquier otra aplicaci&oacute;n). 
+          El par&aacute;metro <strong>cIP</strong> indica la direcci&oacute;n 
+          IP a la que ser&aacute; ligado el socket creado, si no se indica se 
+          utilizar&aacute; la primera direcci&oacute;n IP asignada a la estaci&oacute;n 
+          de trabajo (ver m&eacute;todo <b>IPAddress</b>).<br>
+          <br>
+          El resultado obtenido ser&aacute; el n&uacute;mero de socket creado. 
+          Este socket esperar&aacute; por nuevas conexiones al puerto indicado, 
+          pero no las aceptar&aacute; autom&aacute;ticamente. Esto deber&aacute; 
+          hacerse expl&iacute;citamente mediante una llamada al m&eacute;todo 
+          <b>AcceptConnections</b>.<br>
+          <br>
+          Es posible crear m&uacute;ltiples sockets de escucha si son asignados 
+          a puertos diferentes.<br>
+          <br>
+          Como con cualquier otro socket el socket de escucha deber&aacute; ser 
+          cerrado antes de liberar el objeto utilizando el m&eacute;todo <b>Close</b> 
+          para evitar la p&eacute;rdida de recursos. <br>
+          <br>
+          Si se produjera alg&uacute;n error el valor devuelto ser&aacute; cero. 
+        </td>
+      </tr>
+
+
+      <tr>
+        <td><b>Ping</b></td>
+        <td>Par&aacute;metros: <strong>cHost as String, nDataSize as Integer (opcional), 
+          nTimeOut as Long (opcional) </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Realiza un Ping al host indicado por el par&aacute;metro <strong>cHost</strong> 
+          (tambien es posible utilizar una direcci&oacute;n IP).<br>
+          <br>
+          El par&aacute;metro <strong>nDataSize</strong> indica el tama&ntilde;o 
+          en bytes del paquete a enviar, el valor por defecto de este par&aacute;metro 
+          es 32.<br>
+          <br>
+          El par&aacute;metro <strong>nTimeOut</strong> indica el tiempo de espera 
+          m&aacute;ximo en milisegundos. El valor por defecto de este par&aacute;metro 
+          es 500.<br>
+          <br>
+          Al llamar este m&eacute;todo pueden ocurrir las siguientes situaciones:<br>
+          <br>
+          1. Llamada exitosa. El m&eacute;todo devuelve el valor Verdadero y las 
+          propiedades <b>PingAddress</b>, <b>PingTime</b> y <b>PingResponseSize</b> 
+          contienen el resultado obtenido.<br>
+          <br>
+          2. Error. El m&eacute;todo devuelve el valor Falso y la propiedad <b>PingError</b> 
+          contiene el n&uacute;mero de error obtenido.<br>
+          <br>
+          3. Llamada exitosa pero el tama&ntilde;o de la respuesta no es el mismo 
+          de la solicitud. El m&eacute;todo devuelve el valor Falso y la propiedad 
+          <b>PingError</b> contiene el valor -101. Las propiedades <b>PingAddress</b>, 
+          <b>PingTime</b> y <b>PingResponseSize</b> contienen el resultado obtenido.<br>
+          <br>
+          4. Llamada exitosa pero la respuesta obtenida no coincide con los datos 
+          enviados. El m&eacute;todo devuelve el valor Falso y la propiedad <b>PingError</b> 
+          contiene el valor -102. Las propiedades <b>PingAddress</b>, <b>PingTime</b> 
+          y <b>PingResponseSize</b> contienen el resultado obtenido. <br>
+          <br>
+          Nota: Este m&eacute;todo utiliza la librer&iacute;a ICMP.DLL que si 
+          bien tiene una amplia difusi&oacute;n no es considerada por Microsoft 
+          como parte del sistema operativo y puede ser elimada en futuras versiones.</td>
+      </tr>
+
+      <tr> 
+        <td><b>Read</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long </strong> 
+          <p>Respuesta: <strong>String</strong></p>
+          Lee los mensajes pendientes. El par&aacute;metro <strong>nSocket</strong> 
+          indica un n&uacute;mero de socket obtenido por una llamada a los m&eacute;todos 
+          <b>Connect</b> o <b>AcceptConnections</b>. <br>
+          <br>
+          La respuesta obtenida ser&aacute; los mensajes recibidos para el socket 
+          solicitado. Si la respuesta es una cadena vac&iacute;a se debe verificar 
+          la propiedad <b>SocketClosed</b>. Si est&aacute; en verdadero indica 
+          que la conexi&oacute;n ha sido cerrada por la otra aplicaci&oacute;n. 
+          El socket indicado ya no es v&aacute;lido y no puede utilizarse nuevamente. 
+          Se debe de todas formas cerrarlo utilizando el m&eacute;todo <b>Close</b>.<br>
+          <br>
+          Como los objetos COM creados utilizando Visual FoxPro no permiten desencadenar 
+          eventos una aplicaci&oacute;n creada usando <b>iFox.Sockets</b> debe 
+          regularmente llamar a este m&eacute;todo con el fin de obtener los mensajes 
+          recibidos.</td>
+      </tr>
+
+      
+<tr> 
+        <td><b>Send</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long, cData as String </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Env&iacute;a un mensaje. El par&aacute;metro <strong>nSocket</strong> 
+          indica un n&uacute;mero de socket obtenido por una llamada a los m&eacute;todos 
+          <b>Connect</b> o <b>AcceptConnections</b>. El par&aacute;metro <strong>cData</strong> 
+          indica el mensaje a enviar. La respuesta obtenida indicar&aacute; si 
+          el mensaje ha podido ser enviado exitosamente.</td>
+      </tr>
+      <tr> 
+        <td><b>SendReceive</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long, cData as String, nTimeOut 
+          as Integer (Opcional), nDelayBetweenRetries as Integer (Opcional) </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Envi&aacute; un mensaje y espera por la respuesta. Este m&eacute;todo 
+          es una combinaci&oacute;n de los m&eacute;todos <b>Send</b> y <b>Read</b> 
+          que resulta &uacute;til cuando se debe enviar un comando y esperar por 
+          el resultado como en una sesi&oacute;n FTP o SMTP.<br>
+          <br>
+          El par&aacute;metro <strong>nSocket</strong> indica un n&uacute;mero 
+          de socket obtenido por una llamada a los m&eacute;todos <b>Connect</b> 
+          o <b>AcceptConnections</b>. El par&aacute;metro <strong>cData</strong> 
+          indica el mensaje a enviar.<br>
+          <br>
+          Para evitar un ciclo infinito el par&aacute;metro 
+          <strong>nTimeOut</strong> permite indicar el tiempo (en segundos) que 
+          se esperar&aacute; la respuesta. El valor por defecto de este par&aacute;metro 
+          es 10.<br>
+          <br>
+          Como <strong>iFox.Sockets</strong> contin&uacute;a leyendo el socket hasta que se recibe la respuesta si esta demora en llegar se producir&aacute; una alta utilizaci&oacute;n del procesador durante este tiempo con la consiguiente disminuci&oacute;n del rendimiento general. El par&aacute;metro <strong>nDelayBetweenRetries</strong> permite indicar un tiempo de espera entre lecturas para aligerar la carga del procesador en llamadas a este m&eacute;todo que se prolonguen durante un tiempo considerable. El valor sugerido para este par&aacute;metro es 0.5. <br>
+          <br>
+          Si la operaci&oacute;n ha podido ser completada en forma exitosa se 
+          devolver&aacute; como resultado el valor Verdadero y la propiedad <b>Response</b> 
+          contendr&aacute; la respuesta recibida.</td>
+      </tr>
+      <tr> 
+        <td><b>WaitFor</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long, cPattern as String (opcional), 
+          nTimeOut as Integer (opcional) </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Recibe los mensajes hasta que una determinada cadena es encontrada. 
+          Este m&eacute;todo es una variante del m&eacute;todo <b>Read</b> que 
+          resulta &uacute;til cuando se debe esperar un saludo (por ejemplo: en 
+          una sesi&oacute;n POP3) o cuando se debe esperar una respuesta espec&iacute;fica.<br>
+          <br>
+          El par&aacute;metro <strong>nSocket</strong> indica un n&uacute;mero 
+          de socket obtenido por una llamada a los m&eacute;todos <b>Connect</b> 
+          o <b>AcceptConnections</b>. El par&aacute;metro <strong>cPattern</strong> 
+          indica la cadena buscada. Si este par&aacute;metro no es especificado 
+          el m&eacute;todo considerar&aacute; cumplida la condici&oacute;n cuando 
+          se reciba el primer mensaje (cualquiera que este sea). Para evitar un 
+          ciclo infinito el par&aacute;metro <strong>nTimeOut</strong> permite 
+          indicar el tiempo (en segundos) que se esperar&aacute; la respuesta. 
+          El valor por defecto de este par&aacute;metro es 10.<br>
+          <br>
+          Si la operaci&oacute;n ha podido ser completada en forma exitosa se 
+          devolver&aacute; como resultado el valor Verdadero y la propiedad <b>Response</b> 
+          contendr&aacute; la respuesta recibida.</td>
+      </tr>
+      <tr> 
+        <td><b>WaitForSize</b></td>
+        <td>Par&aacute;metros: <strong>nSocket as Long, nSize as Long, nTimeOut 
+          as Integer (opcional) </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Este m&eacute;todo es similar al m&eacute;todo <b>WaitFor</b> pero espera 
+          hasta que la cantidad de bytes indicada en <strong>nSize</strong> sea 
+          obtenida.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

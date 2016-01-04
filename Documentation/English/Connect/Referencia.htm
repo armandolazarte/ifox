@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Connect: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+    <td valign="center"><span style="font:8pt Verdana"><i>iFox.Connect</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td><b>Connections</b></td>
+        <td>Value type: <b>Collection</b><br>
+          <br>
+          After a succesful call to the EnumConnections method, this property 
+          will contain a collection of <a href="Objeto_Connection.htm">Connection</a> 
+          objects representing the active connections.<br>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>ForceConnection</b></td>
+        <td>Value type: <b>Logical</b><br>
+          <br>
+          If this property's value is true, then the <b>Dial</b> method would 
+          establish the connection automatically without user confirmation.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+
+      <tr> 
+        <td><b>Dial</b></td>
+        <td> Parameters: <strong>cConnection as String (optional)</strong><br>
+          <br>
+          Returns: <strong>Long</strong><br>
+          <br>
+          Establishes an Internet connection. You can ask for an especific connection 
+          using the <strong>cConnection </strong>parameter. If <strong>cConnection</strong> 
+          is not specified, or it does not correspond to a valid connection, the 
+          default connection will be used.<br>
+          <br>
+          If no connection can be made, it returns zero; otherwise it returns 
+          a connection handle that you can use to terminate the connection with 
+          the <b>HangUp</b> method. If the default connection is used the return 
+          value is always -1.<br>
+        </td>
+      </tr>
+
+      <tr> 
+        <td><b>EnumConnections</b></td>
+        <td> 
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>Integer</strong><br>
+            <br>
+            It returns the number of active connections.<br>
+            <br>
+            If no connection exists, the method returns zero.<br>
+            <br>
+            If the return value is equal or greater than one, the <b>Connections</b> 
+            property will contain a collection of <a href="Objeto_Connection.htm">Connection</a> 
+            objetcs representing the active connections.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>EnumEntries</b></td>
+        <td> 
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>String</strong><br>
+            <br>
+            It returns all the available connections (those defined in Dial-up 
+            Networking).</p>
+          <p>If no available connections exists, the method returns an empty string.<br>
+            <br>
+            If there is more than a single available connection the string would 
+            contain their names separated by Chr(13) + Chr(10) characters.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>HangUp</b></td>
+        <td> Parameters: <strong>nConnection as Long (optional)</strong><br>
+          <br>
+          Returns: <strong>Logical</strong><br>
+          <br>
+          Closes the active Internet connection. <strong>nConnection</strong> 
+          indicates the handle corresponding to the connection to terminate. If 
+          not specified the default connection would be closed.</td>
+      </tr>
+      <tr> 
+        <td><b>IsConnected</b></td>
+        <td> Parameters: <strong>None</strong><br>
+          <br>
+          Returns: <strong>Logical</strong><br>
+          <br>
+          Determines if an active Internet connection exists.</td>
+      </tr>
+      <tr>
+        <td><b>Statistics</b></td>
+        <td>Parameters: <strong>nConnection as Long, nType as Integer</strong><br>
+          <br>
+          Returns: <strong>Long</strong><br>
+          <br>
+          Allows to get statistics over an active connection.<br>
+          <br>
+          The nConnection parameter must be the connection handle, obtained trough 
+          the <b>Dial</b> o <b>EnumConnections</b> methods. On Windows 95/98/Me 
+          this parameter is ignored as those operating systems doesn't carry statistical 
+          information by connection.<br>
+          <br>
+          The <strong>nType</strong> parameter indicates the statistical type 
+          to get. Values available for this parameter are:<br>
+          <br>
+          1. Connection speed (in bps)<br>
+          2. Bytes received<br>
+          3. Bytes sent<br>
+          4. Connection time (in milliseconds). Under Windows 95/98/Me the returned 
+          value in this case is zero due to operating system limitations.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div>
+<hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

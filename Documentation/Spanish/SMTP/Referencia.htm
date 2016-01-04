@@ -1,0 +1,525 @@
+<html>
+<head>
+<title>SMTP: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.SMTP</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>SenderName</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+          Nombre del remitente del E-Mail. Este es el nombre que ver&aacute; el 
+          receptor del mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>SenderEMail</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          E-Mail del remitente. Esta es la direcci&oacute;n que ver&aacute; el 
+          receptor del mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>Subject</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Asunto del mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>Priority</b></td>
+        <td>Tipo de valor:<b> <b>Integer</b><br>
+          </b>Valor por Defecto: <b>SMTP_PRIORITY_NORMAL</b><br>
+          <br>
+          Prioridad del mensaje.</td>
+      </tr>
+      <tr>
+        <td><b>NotificationEMail</b></td>
+        <td>Tipo de valor:<b> String<br>
+        </b><br>
+Permite solicitar al receptor del mensaje una confirmaci&oacute;n de recepci&oacute;n. En la propiedad se debe colocar la direcci&oacute;n de E-Mail a la cual se le debe enviar la confirmaci&oacute;n.</td>
+      </tr>
+      <tr> 
+        <td><b>IncludeImages</b></td>
+        <td>Tipo de valor: <b>Logical</b> <br>
+          <br>
+          Indica que las im&aacute;genes deben ser incluidas en el mensaje. Esta 
+          propiedad solamente se aplica a los mensajes HTML, para los mensajes 
+          en modo texto ser&aacute; ignorada.<br>
+          <br>
+          Si esta propiedad est&aacute; en Verdadero antes de enviar el mensaje 
+          se buscar&aacute; todas las ocurrencias del tag &lt;img&gt; y las im&aacute;genes 
+          referenciadas se agregar&aacute;n al mensaje. Se debe incluir la ruta 
+          completa donde se encuentra el archivo. En caso de que la propiedad 
+          <b>HTMLBodyType</b> contenga el valor <strong>SMTP_BODY_FILE</strong> 
+          las im&aacute;genes pueden estar en la misma carpeta que el cuerpo. 
+          No se soportan las rutas relativas.<br>
+          <br>
+          Se debe tener cuidado al utilizar esta opci&oacute;n, ya que las im&aacute;genes 
+          son incluidas junto con el mensaje y su tama&ntilde;o puede crecer m&aacute;s 
+          de lo recomendable.</td>
+      </tr>
+      <tr>
+        <td><b>IncludeMusic</b></td>
+        <td>Tipo de valor: <b>Logical</b> <br>
+          <br>
+          Indica que m&uacute;sica de fondo debe ser incluida en el mensaje. Esta 
+          propiedad solamente se aplica a los mensajes HTML, para los mensajes 
+          en modo texto ser&aacute; ignorada.<br>
+          <br>
+          Si esta propiedad est&aacute; en Verdadero antes de enviar el mensaje 
+          se buscar&aacute; todas las ocurrencias del tag &lt;bgsound&gt; y los 
+          archivos de sonido referenciados se agregar&aacute;n al mensaje. Se 
+          debe incluir la ruta completa donde se encuentra el archivo. En caso 
+          de que la propiedad <b>HTMLBodyType</b> contenga el valor <strong>SMTP_BODY_FILE</strong> 
+          las im&aacute;genes pueden estar en la misma carpeta que el cuerpo. 
+          No se soportan las rutas relativas.<br>
+          <br>
+          Se debe tener cuidado al utilizar esta opci&oacute;n, ya que los archivos 
+          de sonido son incluidos junto con el mensaje y su tama&ntilde;o puede 
+          crecer m&aacute;s de lo recomendable.</td>
+      </tr>
+      <tr> 
+        <td><b>Body</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Contiene el cuerpo del mensaje en modo texto. Si la propiedad <b>BodyType</b> 
+          contiene el valor <strong>SMTP_BODY_FILE</strong> esta propiedad debe 
+          establecerse con el nombre de un archivo que contenga el texto del mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>BodyCharset</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por Defecto: <b>iso-8859-1</b> <br>
+          <br>
+          Indica la codificaci&oacute;n aplicada al cuerpo del mensaje. Este valor 
+          no se utiliza para ning&uacute;n tipo de conversi&oacute;n y se supone 
+          que el mensaje ya se proporciona codificado apropiadamente. No obstante 
+          <b>iFox.SMTP</b> se encarga de codificar todos los mensajes para utilizar 
+          un m&aacute;ximo de 7 bits de forma que puedan ser procesados por cualquier 
+          servidor SMTP o cliente de correo.</td>
+      </tr>
+      <tr> 
+        <td><b>BodyType</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por Defecto: <b>SMTP_BODY_STRING</b><br>
+          <br>
+          Indica la forma en que se proporciona el cuerpo del mensaje. Los valores 
+          permitidos son:<br>
+          <br>
+          <b>SMTP_BODY_STRING</b>: Se debe establecer la propiedad <strong>Body</strong> 
+          con el texto del mensaje.<br>
+          <br>
+          <b>SMTP_BODY_FILE</b>: Se debe establecer la propiedad <strong>Body</strong> 
+          con el nombre de un archivo que contenga el mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>HTMLBody</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Contiene el cuerpo del mensaje en formato HTML. Si la propiedad <b>HTMLBodyType</b> 
+          contiene el valor <strong>SMTP_BODY_FILE</strong> esta propiedad debe 
+          establecerse con el nombre de un archivo que contenga el texto del mensaje.<br>
+          <br>
+          No todos los clientes de correo soportan mensajes en este formato, as&iacute; 
+          que resulta recomendable establecer la propiedad <b>Body</b> con una 
+          versi&oacute;n en texto puro del mensaje. <b>iFox.SMTP</b> es capaz 
+          de codificar el mensaje incluyendo los dos formatos.<br>
+          <br>
+          Si esta propiedad contiene una cadena vac&iacute;a se enviar&aacute; 
+          el mensaje en modo texto.</td>
+      </tr>
+      <tr> 
+        <td><b>HTMLBodyCharset</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por Defecto: <b>iso-8859-1</b> <br>
+          <br>
+          Similar a la propiedad <b>BodyCharset</b> pero aplicable a los mensajes 
+          en formato HTML.</td>
+      </tr>
+      <tr> 
+        <td><b>HTMLBodyType</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por Defecto: <b>SMTP_BODY_STRING</b><br>
+          <br>
+          Similar a la propiedad <b>BodyType</b> pero aplicable a los mensajes 
+          en formato HTML.</td>
+      </tr>
+      <tr>
+        <td><b>RTFBody</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+            <br>
+          Contiene el cuerpo del mensaje en formato RTF. Si la propiedad <b>RTFBodyType</b> contiene el valor <strong>SMTP_BODY_FILE</strong> esta propiedad debe 
+          establecerse con el nombre de un archivo que contenga el texto del mensaje.<br>
+              <br>
+          No todos los clientes de correo soportan mensajes en este formato, as&iacute; 
+          que resulta recomendable establecer la propiedad <b>Body</b> con una 
+          versi&oacute;n en texto puro del mensaje. <b>iFox.SMTP</b> es capaz 
+          de codificar el mensaje incluyendo los dos formatos.<br>
+              <br>
+          Si esta propiedad contiene una cadena vac&iacute;a se enviar&aacute; 
+          el mensaje en modo texto.</td>
+      </tr>
+      <tr>
+        <td><b>RTFBodyCharset</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por Defecto: <b>iso-8859-1</b> <br>
+          <br>
+          Similar a la propiedad <b>BodyCharset</b> pero aplicable a los mensajes 
+          en formato RTF.</td>
+      </tr>
+      <tr>
+        <td><b>RTFBodyType</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por Defecto: <b>SMTP_BODY_STRING</b><br>
+          <br>
+          Similar a la propiedad <b>BodyType</b> pero aplicable a los mensajes 
+          en formato RTF.</td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          En caso de producirse un error esta propiedad contendr&aacute; el n&uacute;mero 
+          de error ocurrido. Los valores posibles son:<br>
+          <br>
+          1. Error de conexi&oacute;n<br>
+          2. No se ha obtenido respuesta del servidor SMTP<br>
+          3. La direcci&oacute;n de E-Mail del remitente es inv&aacute;lida<br>
+          4. No se ha indicado ning&uacute;n destinatario<br>
+          5. El servidor SMTP ha respondido con un mensaje de error.<br>
+          6. El servidor SMTP ha rechazado la direcci&oacute;n de E-Mail del remitente.<br>
+          7. El servidor SMTP ha rechazado alguno de los destinatarios.<br>
+          8. El servidor SMTP utiliza un m&eacute;todo de autenticaci&oacute;n no soportado por iFox.<br>
+          9. Error durante la autenticaci&oacute;n. El servidor SMTP ha rechazado el nombre de usuario.<br>
+          10. Error durante la autenticaci&oacute;n. El servidor SMTP ha rechazado la clave de acceso.          <br>
+          11. Error durante la autenticaci&oacute;n. El servidor SMTP ha rechazado el nombre de usuario o la clave de acceso.           <br>
+          12. Error al intentar solicitar al servidor que cancele el mensaje actual. <br>
+          999. Se ha llamado al m&eacute;todo <b>SendNextPart</b> luego que todo 
+          el mensaje ha sido transmitido.</td>
+      </tr>
+      <tr> 
+        <td><b>ExtraErrorInfo</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Contiene una descripci&oacute;n del error ocurrido. El valor contenido 
+          depender&aacute; del c&oacute;digo de error indicado por la propiedad 
+          <b>ErrorNumber</b>. <br>
+          <br>
+          3. Direcci&oacute;n de E-Mail del remitente.<br>
+          5. Respuesta obtenida del servidor SMTP.<br>
+          6. Respuesta obtenida del servidor SMTP. <br>
+          7. Direcci&oacute;n de E-Mail del destinatario.<br>
+          <br>
+          Para los otros tipos de error esta propiedad contendr&aacute; una cadena 
+          vac&iacute;a.</td>
+      </tr>
+      <tr> 
+        <td><b>SMTPErrorNumber</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          Si la propiedad <b>ErrorNumber</b> contiene los valores 5, 6 &oacute; 
+          7 esta propiedad contendr&aacute; el c&oacute;digo de error devuelto 
+          por el servidor SMTP.</td>
+      </tr>
+      <tr> 
+        <td><b>SMTPResponses</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Esta propiedad contendr&aacute; todas las respuestas obtenidas del servidor 
+          SMTP. Esta informaci&oacute;n puede resultar &uacute;til para la detecci&oacute;n 
+          de errores o creaci&oacute;n de logs.</td>
+      </tr>
+      <tr> 
+        <td><b>PartSize</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          Valor por Defecto: <b>1024</b><br>
+          <br>
+          Cantidad de bytes a enviar en cada llamada al m&eacute;todo <b>SendNextPart</b>.<br>
+          <br>
+          <b>No</b> se debe modificar el valor de esta propiedad luego de comenzado 
+          el env&iacute;o del mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>EOD</b></td>
+        <td>Tipo de valor: <b>Logical</b> <br>
+          <br>
+          End of Data. Al efectuar un env&iacute;o a trav&eacute;s del m&eacute;todo 
+          <b>SendNextPart</b> esta propiedad indicar&aacute; si ya se ha terminado 
+          de enviar el mensaje.</td>
+      </tr>
+      <tr> 
+        <td><b>ValidAddresses</b></td>
+        <td>Tipo de valor: <b>Logical</b> <br>
+          <br>
+          Por defecto <b>iFox.SMTP</b> efect&uacute;a una validaci&oacute;n b&aacute;sica 
+          de las direcciones de E-Mail utilizadas rechazando aquellas que sean 
+          inv&aacute;lidas. Si no se desea efectuar esta validaci&oacute;n establezca 
+          esta propiedad en <b>False</b>. La validaci&oacute;n que se realiza 
+          controla solamenta algunas caracter&iacute;sticas sint&aacute;cticas 
+          de la direcci&oacute;n y su aceptaci&oacute;n no significa que sea realmente 
+          una direcci&oacute;n de E-Mail v&aacute;lida.</td>
+      </tr>
+      <tr> 
+        <td><b>BodyData</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Luego de una llamada al m&eacute;todo <b>PrepareMail</b> esta propiedad 
+          contendr&aacute; el texto del mensaje a enviar. De esta forma es posible 
+          realizar una vista previa del mensaje.</td>
+      </tr>
+      <tr>
+        <td><b>AuthenticationMethod</b></td>
+        <td>Tipo de valor: <b>Integer</b> <br>
+          <br> 
+          Indica el m&eacute;todo de autenticaci&oacute;n a utilizar en el caso que el servidor SMTP requiera autenticaci&oacute;n. Los valores posibles son:<br>
+          <br> 
+          0. Sin autenticaci&oacute;n.<br>
+          1. Autenticaci&oacute;n por POP3. Aunque no muy com&uacute;n esta modalidad de autenticaci&oacute;n a&uacute;n es utilizada por algunos servidores. En esta modalidad el cliente establece una conexi&oacute;n con un servidor POP3 determinado, si esta conexi&oacute;n es exitosa  se permite la utilizaci&oacute;n del servidor SMTP.<br>
+          2. Autenticaci&oacute;n por SMTP.</td>
+      </tr>
+      <tr>
+        <td><b>UserName</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+Indica el nombre de usuario a utilizar para efectuar la autenticaci&oacute;n ante el servidor SMTP. En el caso de establecer la propiedad <b>AuthenticationMethod</b> en 1 se debe asignar el nombre de usuario del servidor POP3. </td>
+      </tr>
+      <tr>
+        <td><b>Password</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+Indica la clave de acceso a utilizar para efectuar la autenticaci&oacute;n ante el servidor SMTP. En el caso de establecer la propiedad <b>AuthenticationMethod</b> en 1 se debe asignar la clave de acceso del servidor POP3.</td>
+      </tr>
+      <tr>
+        <td><b>POP3Server</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+En el caso de establecer la propiedad <b>AuthenticationMethod</b> en 1 se debe establecer esta propiedad con la direcci&oacute;n del servidor POP3.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>AddRecipient</b></td>
+        <td>Par&aacute;metros: <strong>cName as String, cEMail as String </strong> 
+          <p>Respuesta: <strong>Logical</strong><br>
+          </p>
+          Agrega un destinatario al mensaje. Si se desea enviar el mensaje a m&uacute;ltiples 
+          destinatarios se deber&aacute; llamar a este m&eacute;todo por cada 
+          uno de ellos.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si el remitente ha sido aceptado 
+          o rechazado por que la direcci&oacute;n de E-Mail es inv&aacute;lida.</td>
+      </tr>
+      <tr> 
+        <td><b>AddCC</b></td>
+        <td>Par&aacute;metros: <strong>cName as String, cEMail as String </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Este m&eacute;todo es similar a <b>AddRecipient</b> pero aplicable a 
+          los receptores del tipo CC.</td>
+      </tr>
+      <tr> 
+        <td><b>AddBCC</b></td>
+        <td>Par&aacute;metros: <strong>cName as String, cEMail as String </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Este m&eacute;todo es similar a <b>AddRecipient</b> pero aplicable a 
+          los receptores del tipo BCC (ocultos).<br>
+          <br>
+          Como el nombre del receptor no es necesario en este caso el par&aacute;metro 
+          cName ser&aacute; ignorado. Este par&aacute;metro se reserva para futuras 
+          versiones de <b>iFox.SMTP</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>AddAttachment</b></td>
+        <td>Par&aacute;metros: <strong>cFile as String </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          <p>Adjunta el archivo indicado por el par&aacute;metro <strong>cFile</strong> 
+            al mensaje. Si se desea adjuntar m&uacute;ltiples archivos se deber&aacute; 
+            llamar a este m&eacute;todo por cada uno de ellos.<br>
+            <br>
+            La respuesta obtenida indicar&aacute; si el archivo ha sido aceptado 
+            o rechazado por que no existe. </p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>ValidMailAddress</b></td>
+        <td>Par&aacute;metros: <strong>cAddress as String </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          <p>Indica si una direcci&oacute;n de E-Mail es v&aacute;lida. Este m&eacute;todo 
+            no puede indicar si la direcci&oacute;n indicada existe realmente 
+            sino que verifica que se cumplan algunas reglas b&aacute;sicas. Por 
+            ejemplo: que contenga una arroba.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>NewMessage</b></td>
+        <td>Par&aacute;metros: <strong>cAddress as String </strong> 
+          <p>Respuesta: <strong>Ninguna</strong></p>
+          <p>Reinicializa el objeto y lo prepara para enviar otro mensaje. <b>Todas</b> 
+            las propiedades vuelven a sus valores por defecto.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>ConnectSend</b></td>
+        <td>Par&aacute;metros: <strong>cServer as String, nPort as Long (opcional) 
+          </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          <p>Esta es la funci&oacute;n de env&iacute;o de m&aacute;s alto nivel. 
+            Se conecta al servidor SMTP, luego env&iacute;a el mensaje y finalmente 
+            se desconecta.<br>
+            <br>
+            El par&aacute;metro <strong>cServer</strong> debe contener el nombre 
+            o direcci&oacute;n IP de un servidor SMTP. El par&aacute;metro <strong>nPort</strong> 
+            indica el n&uacute;mero de puerto a utilizar, en caso de no ser especificado 
+            se utilizar&aacute; el puerto estandar establecido en el protocolo 
+            SMTP: 25.<br>
+            <br>
+            La respuesta obtenida indica si el mensaje ha podido ser enviado exitosamente.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>Connect</b></td>
+        <td>Par&aacute;metros: <strong>cServer as String, nPort as Long (opcional) 
+          </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Establece una conexi&oacute;n con un servidor SMTP.<br>
+          <br>
+          El par&aacute;metro <strong>cServer</strong> debe contener el nombre 
+          o direcci&oacute;n IP de un servidor SMTP. El par&aacute;metro <strong>nPort</strong> 
+          indica el n&uacute;mero de puerto a utilizar, en caso de no ser especificado 
+          se utilizar&aacute; el puerto estandar establecido en el protocolo SMTP: 
+          25.<br>
+          <br>
+          Antes de liberar el objeto se debe cerrar la conexi&oacute;n utilizando 
+          el m&eacute;todo <b>Disconnect</b>.<br>
+          <br>
+          La respuesta obtenida indica si la conexi&oacute;n ha podido establecerse 
+          exitosamente.</td>
+      </tr>
+      <tr> 
+        <td><b>Disconnect</b></td>
+        <td>Par&aacute;metros: <strong>lFastDisconnect as Logical (opcional)</strong>  
+          <p>Respuesta: <strong>Logical</strong></p>
+          Cierra una conexi&oacute;n establecida utilizando el m&eacute;todo <b>Connect</b>.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al intentar 
+        cerrar la conexi&oacute;n.<br>
+        <br>
+        El par&aacute;metro  <strong>lFastDisconnect</strong> indica que no se debe esperar confirmaci&oacute;n del servidor. Es posible utilizar este par&aacute;metro para mejorar la velocidad de respuesta cuando se est&aacute; interrumpiendo el env&iacute;o de un mensaje. Cuando <strong>lFastDisconnect </strong>tiene el valor Verdadero la respuesta del m&eacute;todo y el contenido de la propiedad ErrorNumber pueden ser incorrectos. </td>
+      </tr>
+      <tr> 
+        <td><b>Send</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Envia el mensaje. Se debe establecer previamente una conexi&oacute;n 
+          con un servidor SMTP mediante el m&eacute;todo <b>Connect</b>.<br>
+          <br>
+          Otro mensaje puede ser enviado utilizando la misma conexi&oacute;n llamando 
+          al m&eacute;todo <b>NewMessage</b>. Se debe tener en cuanta que algunos 
+          servidores SMTP no env&iacute;an el mensaje inmediatamente sino que 
+          lo colocan en una cola de espera hasta que se cierre la conexi&oacute;n. 
+          Se debe tener cuidado para no superar la cantidad m&aacute;xima de mensajes 
+          en espera.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al enviar el 
+          mensaje. </td>
+      </tr>
+      <tr> 
+        <td><b>StartPartialSending</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Comienza un env&iacute;o parcial<b></b>. Este m&eacute;todo de env&iacute;o 
+          puede ser &uacute;til para enviar un mensaje de gran tama&ntilde;o sin 
+          que la aplicaci&oacute;n deje de responder al usuario o cuando se desea 
+          mostrar una barra de progreso.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error. </td>
+      </tr>
+      <tr> 
+        <td><b>SendNextPart</b></td>
+        <td>Par&aacute;metros:<strong> nRetries as Integer (opcional)</strong>
+          <p>Respuesta: <strong>Logical</strong></p>
+          Env&iacute;a la siguiente parte de un mensaje. Previamente se debe haber 
+          llamado al m&eacute;todo <b>StartPartialSending</b>. Este m&eacute;todo 
+          debe ser llamado repetidamente hasta que la propiedad <b>EOD</b> indique 
+          que el mensaje ha sido enviado en su totalidad. El tama&ntilde;o de 
+          cada parte se encuentra indicado en la propiedad <b>PartSize</b>. Luego 
+          de finalizado el env&iacute;o se debe llamar al m&eacute;todo <b>EndPartialSending</b>.<br>
+          <br>
+          El par&aacute;metro <strong>nRetries</strong> permite indicar la cantidad de veces que debe intentarse el env&iacute;o. Ajustar este valor puede evitar errores de transferencia cuando se utiliza el componente sobre una mala conexi&oacute;n a internet. El valor por defecto de este par&aacute;metro es <strong>3</strong>. <br>
+          <br>
+        La respuesta obtenida indica si se ha producido un error. </td>
+      </tr>
+      <tr> 
+        <td><b>EndPartialSending</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Finaliza el env&iacute;o parcial<b></b> de un mensaje.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error.</td>
+      </tr>
+      <tr> 
+        <td><b>GetCurrentPosition</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Long</strong></p>
+          Indica la posici&oacute;n actual del puntero durante un env&iacute;o 
+          parcial. Obviamente, este valor ser&aacute; menor o igual al obtenido 
+          mediante el m&eacute;todo <b>GetMessageSize</b>. El valor obtenido solamente 
+          es v&aacute;lido luego de una llamada exitosa al m&eacute;todo <b>StartPartialSending</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>GetMessageSize</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Long</strong></p>
+          Indica el tama&ntilde;o en bytes del mensaje. El valor obtenido solamente 
+          es v&aacute;lido luego de una llamada exitosa a los m&eacute;todos <b>StartPartialSending</b>, 
+          <b>Send</b> o <b>ConnectSend</b>.<br>
+        </td>
+      </tr>
+      <tr>
+        <td><b>PrepareMail</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Ninguna</strong></p>
+          Construye el mensaje a enviar. Luego de una llamada a este m&eacute;todo 
+          la propiedad <b>BodyData</b> contendr&aacute; el c&oacute;digo del mensaje 
+          a enviar. De esta forma es posible realizar una vista previa del mensaje.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Samples</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.FTP</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Samples</b></span></td>
+</tr>
+</table>
+<div class=text>
+  <p>
+    The following examples show different ways to use <b>iFox.FTP</b><br>
+    <br>
+    <br>
+    <b>Sample 1</b>: Transferring a file to an FTP server.<br>
+  </p>
+  <pre>oFTP = CreateObject(&quot;iFox.FTP&quot;)<br>If oFTP.Connect(&quot;ftp.server.com&quot;, &quot;user&quot;, &quot;xxxx&quot;)<br>   oFTP.Upload(&quot;C:\DATA.ZIP&quot;, &quot;/ARCHIVES/DATA.ZIP&quot;)<br>   oFTP.Close()<br>Endif</pre>
+  <p><br>
+    <b>Sample 2</b>: Download a file and monitor the transfer progress.<br>
+  </p>
+  <pre>oFTP = CreateObject(&quot;iFox.FTP&quot;)<br>If oFTP.Connect(&quot;ftp.server.com&quot;, &quot;user&quot;, &quot;xxxx&quot;)
+
+   If oFTP.Startdownload(&quot;/ARCHIVES/DATA.ZIP&quot;, &quot;C:\DATA.ZIP&quot;)<br><br>      Do While !oFTP.EOT<br>         If oFTP.DownloadNextPart()<br>            ? &quot;Bytes transferred: &quot; + Str(oFTP.TransferredBytes)<br>         else<br>            ? &quot;Error&quot;<br>         Endif<br>      Enddo<br><br>   else<br>      ? &quot;Error&quot;<br>   Endif<br><br>   oFTP.Enddownload()
+
+   oFTP.Close()<br><br>Endif</pre>
+  <br>
+</div>
+<hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

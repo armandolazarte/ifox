@@ -1,0 +1,341 @@
+<html>
+<head>
+<title>POP3: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.POP3</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>UserName</b></td>
+        <td>Value type: <b>String</b> 
+          <p>User name. This value will be used to perform authentication against 
+            the POP server.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>Password</b></td>
+        <td>Value type: <b>String</b> 
+          <p>This value will be used to perform authentication against the POP 
+            server.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>MessageCount</b></td>
+        <td>Value type: <b>Integer</b> 
+          <p>Received message quantity. This value is valid only after a succesful 
+            call to the <b>Connect </b>method.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>TotalSize</b></td>
+        <td>Value type: <b>Integer</b> 
+          <p>Total size in bytes for the received messages. This value is valid 
+            only after a succesful call to the <b>Connect </b>method.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadHeaders</b></td>
+        <td>Value type: <b>Logical</b> 
+          <p>Indicates if, when receiving messages, just the header has to be 
+            downloaded.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadLines</b></td>
+        <td>
+          <p>Value type: <b>Integer</b> <br>
+            Default value: <b>10</b> <br>
+            <br>
+            If <b>DownloadHeaders</b> property is set to True, the quantity of 
+            body lines indicated by this property would be downloaded toghether 
+            with the header.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+          </p>
+          <p>When an error occurs, this property will hold the related error number. 
+            Possible values are:<br>
+            <br>
+            1. Connection error.<br>
+            2. No answer from POP3 server.<br>
+            3. POP3 server answered with an error message.<br>
+            4. The message is invalid.<br>
+12. The user name or password has been rejected.<br>
+          </p>          </td>
+      </tr>
+      <tr> 
+        <td><b>POP3Response</b></td>
+        <td>
+          <p>Value type: <b>String</b><br>
+            <br>
+            Contains a description of the error. The value content will depend 
+            on the error indicated by <b>ErrorNumber</b> property.<br>
+            <br>
+            If error number is 3, this property will hold the received answer 
+            from POP3 server. For the other error numbers this property will hold 
+            an empty string.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>RawHeaders</b></td>
+        <td>
+          <p>Value type: <b>String</b><br>
+            <br>
+            Contains the message header without processing. This property is useful 
+            if the user wants to make his own decoding routine.</p>
+          <p>This value is valid only after a succesful call to the <b>Get</b> 
+            method.<br>
+          </p>          </td>
+      </tr>
+      <tr> 
+        <td><b>RawBody</b></td>
+        <td>
+          <p>Value type: <b>String</b><br>
+            <br>
+            Contains the message body without processing. This property is useful 
+            if the user wants to make his own decoding routine.</p>
+          <p>This value is valid only after a succesful call to the <b>Get</b> 
+            method.</p>          </td>
+      </tr>
+      <tr>
+        <td><b>SentDate</b></td>
+        <td>Value type: <b>String</b><br>
+          <br>
+Contains the message's sending date.<br>
+<br>
+This value is valid only after a succesful call to the <b>Get</b> method.</td>
+      </tr>
+      <tr>
+        <td><b>SentTime</b></td>
+        <td>Value type: <b>String</b><br>
+          <br>
+Contains the message's sending hour. This hour is expressed in the sender's time zone.<br>
+<br>
+This value is valid only after a succesful call to the <b>Get</b> method.</td>
+      </tr>
+      <tr>
+        <td><b>SentTimeZone</b></td>
+        <td>Value type: <b>Integer</b><br>
+          <br>
+Contains the sender's time zone. You can use this value to adjust the value of <strong>SentTime</strong> to your own time zone.<br>
+<br>
+This value is valid only after a succesful call to the <b>Get</b> method.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>Connect</b></td>
+        <td>Parameters: <strong>cServer as String, nPort as Long </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Establishes a connection to the PO3 server.</p>
+          <p><b>cServer</b> parameter have to contain the name or IP address of 
+            a POP3 server. nPort parameter indicates the port number to use. If 
+            not specified, the standard port for POP3 protocol (110) will be used.<br>
+            <br>
+            Before releasing this object the connection should be closed using 
+            the <b>Disconnect</b> method.<br>
+            <br>
+            Return value indicates if the connection has being succesfully estabished.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>Disconnect</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Closes a connection established using the <b>Connect</b> method.<br>
+            <br>
+            Return value indicates if an error has occured while trying to close 
+            the connection.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>Delete</b></td>
+        <td>Parameters: <strong>nMessage as Integer </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Deletes the message indicated by the <b>nMessage</b> parameter. This 
+            value have to be a number between 1 and the value of the <b>MessageCount</b> 
+            property. </p>
+          <p>According to the rules of the POP3 protocol, the message is not actually 
+            eliminated until the connection is closed by the <b>Disconnect</b> 
+            method. Until this moment it can be restored by the <b>Recall</b> 
+            method. After deletion, a message becomes invalid and any effort to 
+            download it will generate an error message from the POP3 server.<br>
+            <br>
+            Return value indicates if an error has occured while trying to execute 
+            the operation.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>Recall</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Restores the messages deleted during the active session.</p>
+          <p>After closing the connection by the <b>Disconnect</b> method, messages 
+            will be definitively eliminated, withouth any change to retrieve them.</p>
+          <p>According to the rules of the POP3 protocol, <b>ALL</b> the deleted 
+            messages are recalled.</p>
+          <p>Return value indicates if an error has occured while trying to execute 
+            the operation.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>Test</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>This method sends a test message to the server to check if communication 
+            has being interrupted or the server has stopped responding.</p>
+          <p>Return value indicates if an error has occured while trying to execute 
+            the operation.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>Get</b></td>
+        <td>Parameters: <strong>nMessage as Integer </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Downloads the message indicated by the <b>nMessage</b> parameter. 
+            This value have to be a number between 1 and the value of the <b>MessageCount</b> 
+            property.<br>
+          </p>
+          <p>If <b>DownloadHeaders</b> property is True, just the message header 
+            and the number of lines from the body indicated by <b>DownloadLines</b> 
+            are downloaded.<br>
+            <br>
+            Return value indicates if an error has occured while trying to execute 
+            the operation.<br>
+            <br>
+            After the download is finished, the following properties will contain 
+            the following information regarding the message:<br>
+            <br>
+            <br>
+            <strong>RawMessage</strong><br>
+The message in raw format. Use this property to save the message in EML format or to do your own decodification. <br>
+<br>
+<br>
+<b>RawHeaders<br>
+</b>The headers of the messge in raw format.<b><br>
+<br>
+<br>
+RawBody<br>
+</b>The body of the messge in raw format.<b><br>
+<br>
+<br>
+SenderName<br>
+</b>The sender's name.<b> <br>
+<br>
+<br>
+SenderEMail<br>
+</b>The EMail address of the sender.<b><br>
+<br>
+<br>
+RecipientsCount<br>
+</b>The count of recipients of the message. If CCO has been used this value can be zero.<b> <br>
+<br>
+<br>
+Recipients <br>
+</b>A collection with the names and EMails of the recipients. The following example shows how to read this information: <b> <br>
+</b> </p>        
+          <pre>For x = 1 to oPOP3.RecipientsCount<br>    cName = oPOP3.Recipients[x].ReceiverName<br>    cEMail = oPOP3.Recipients[x].ReceiverEMail<br>Next
+          </pre>
+          <b>CCCount<br>
+          </b>The count of CC recipients of the message. If CCO has been used this value can be zero.<b> <br>
+          </b><b><br>
+          <br>
+CC <br>
+          </b>A collection with the names and EMails of the CC recipients. The following example shows how to read this information: <b> <br>
+          </b> <br>
+          <pre>For x = 1 to oPOP3.RecipientsCount<br>    cName = oPOP3.Recipients[x].ReceiverName<br>    cEMail = oPOP3.Recipients[x].ReceiverEMail<br>Next</pre>
+          <b> <br>
+          Subject<br>
+          </b>The subject of the message. <b><br>
+          <br>
+          <br>
+Priority<br>
+          </b>The priority of the message. Possible values are:<br>
+1. High <br>
+3. Normal<br>
+5. Low <br>
+<b><br>
+<br>
+SentDate<br>
+</b>The sent date of the message, expressed in the sender's time zone. <b><br>
+<br>
+<br>
+SentTime<br>
+</b>The sent time of the message, expressed in the sender's time zone.<br>
+<b><br>
+<br>
+SentTimeZone<br>
+</b>The sender's time zone. You can use this information to adjust the sent time to any time zone. <b><br>
+<br>
+<br>
+AdjustedDate<br>
+</b>The sent date of the message, expressed in the time zone established in Window's Control Panel.<b><br>
+<br>
+<br>
+AdjustedTime<br>
+</b>The sent time of the message, expressed in the time zone established in Window's Control Panel.<b> <br>
+<br>
+<br>
+Body<br>
+</b>The body of the message in plain format. Only available if the sender program has encoded the messge in this format. <br>
+<b><br>
+<br>
+HTMLBody<br>
+</b>The body of the message in HTML format. Only available if the sender program has encoded the messge in this format. <br>
+<b><br>
+<br>
+AttachmentsCount<br>
+</b>The amount of attached files.<b> <br>
+<br>
+<br>
+Attachments</b><br>
+A collection containing the attached files.The following example shows how to read this information:<br>
+<pre>For x = 1 to oPOP3.AttachmentsCount<br>    cName = oPOP3.Attachments[x].FileName<br>    nSize = oPOP3.Attachments[x].FileSize<br>Next</pre>
+<b><br>
+ResourcesCount<br>
+</b>The amount of embedded files, like images or sounds inserted in the body of the message.<b> <br>
+<br>
+<br>
+Resources </b><br>
+A collection containing the embedded files.The following example shows how to read this information:<br>
+<pre>For x = 1 to oPOP3.ResourcesCount<br>    cName = oPOP3.Resources[x].FileName<br>    cContent = oPOP3.Resources[x].Content<br>    cID = oPOP3.Resources[x].ID<br>Next
+</pre>
+</td>
+      </tr>
+      <tr>
+        <td><strong>ParseMessage</strong></td>
+        <td>Parameters: <strong>cMessage as String </strong>
+          <p>Returns: <strong>Logical</strong></p>
+        Decodes a previously stored message. The <strong>cMessage</strong> parameters must receive the message content. Return value indicates if an error has occured while trying to execute 
+            the operation. All the properties listed in the documentation of the <strong>Get</strong> method are filled with their corresponding values. </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

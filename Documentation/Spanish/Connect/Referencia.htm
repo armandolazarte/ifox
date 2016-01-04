@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>Connect: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+    <td valign="center"><span style="font:8pt Verdana"><i>iFox.Connect</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr>
+        <td><b>Connections</b></td>
+        <td>Tipo de valor: <b>Colecci&oacute;n</b><br>
+          <br>
+          Luego de una llamada exitosa al m&eacute;todo <b>EnumConnections</b> 
+          este m&eacute;todo contendr&aacute; una colecci&oacute;n de objetos 
+          <a href="Objeto_Connection.htm">Connection</a> representando las conexiones 
+          activas</td>
+      </tr>
+      <tr> 
+        <td><b>ForceConnection</b></td>
+        <td>Tipo de valor: <b>L&oacute;gico</b><br>
+          <br>
+          Si el valor de esta propiedad es verdadero el m&eacute;todo <b>Dial</b> 
+          establecer&aacute; la conexi&oacute;n autom&aacute;ticamente sin pedir 
+          confirmaci&oacute;n al usuario.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+
+      <tr> 
+        <td><b>Dial</b></td>
+        <td> Par&aacute;metros: <strong>cConnection as String (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>Long</strong><br>
+          <br>
+          Establece una conexi&oacute;n a Internet. Puede solicitarse una conexi&oacute;n 
+          espec&iacute;fica a trav&eacute;s del par&aacute;metro <strong>cConnection</strong>. 
+          Si <strong>cConnection </strong>no es especificado o no corresponde 
+          a una conexi&oacute;n v&aacute;lida se utilizar&aacute; la conexi&oacute;n 
+          por defecto.<br>
+          <br>
+          Si la conexi&oacute;n no puede realizarse la respuesta ser&aacute; cero, 
+          caso contrario la respuesta es un handle identificatorio de la conexi&oacute;n 
+          que puede utilizarse para terminar la conexi&oacute;n a trav&eacute;s 
+          del m&eacute;todo <b>HangUp</b>. En caso de utilizar la conexi&oacute;n 
+          por defecto el valor devuelto es siempre -1.<br>
+        </td>
+      </tr>
+
+      <tr> 
+        <td><b>EnumConnections</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Integer</strong><br>
+          <br>
+          Devuelve como respuesta la cantidad de conexiones activas. <br>
+          <br>
+          Si no existiera ninguna conexi&oacute;n activa el m&eacute;todo devolver&aacute; 
+          cero.<br>
+          <br>
+          Si el valor devuelto es mayor o igual a uno la propiedad <b>Connections</b> 
+          contendr&aacute; una colecci&oacute;n de objetos <a href="Objeto_Connection.htm">Connection</a> 
+          representando las conexiones activas.</td>
+      </tr>
+
+      <tr> 
+        <td><b>EnumEntries</b></td>
+        <td> Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>String</strong><br>
+          <br>
+          Devuelve como respuesta todas las conexiones disponibles (aquellas definidas 
+          en el <b>Acceso Telef&oacute;nico a Redes</b>). <br>
+          <br>
+          Si no existiera ninguna conexi&oacute;n disponible el m&eacute;todo 
+          devolver&aacute; una cadena vac&iacute;a.<br>
+          <br>
+          Si existiera m&aacute;s de una conexi&oacute;n disponible se utilizar&aacute; 
+          como separador los caracteres de Nueva L&iacute;nea Chr(13) + Chr(10)</td>
+      </tr>
+      <tr> 
+        <td><b>HangUp</b></td>
+        <td> Par&aacute;metros: <strong>nConnection as Long (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Cierra una conexi&oacute;n activa a Internet. <strong>nConnection</strong> 
+          indica el handle correspondiente a la conexi&oacute;n que se desea terminar. 
+          Si no es especificado se cerrar&aacute; la conexi&oacute;n por defecto.</td>
+      </tr>
+      <tr> 
+        <td><b>IsConnected</b></td>
+        <td> Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Determina si existe una conexi&oacute;n activa a Internet.</td>
+      </tr>
+      <tr>
+        <td><b>Statistics</b></td>
+        <td>Par&aacute;metros: <strong>nConnection as Long, nType as Integer</strong><br>
+          <br>
+          Respuesta: <strong>Long</strong><br>
+          <br>
+          Permite obtener estad&iacute;sticas sobre una conexi&oacute;n activa.<br>
+          <br>
+          El par&aacute;metro <strong>nConnection</strong> debe ser el handle 
+          de una conexi&oacute;n, obtenido a trav&eacute;s de los m&eacute;todos 
+          <b>Dial</b> o <b>EnumConnections</b>. En Windows 95/98/Me este par&aacute;metro 
+          es ignorado ya que estos sistemas operativos no llevan estad&iacute;sticas 
+          discriminadas por conexi&oacute;n.<br>
+          <br>
+          El par&aacute;metro <strong>nType</strong> indica el tipo de estad&iacute;stica 
+          a obtener. Los valores que puede tomar este par&aacute;metro son:<br>
+          <br>
+          1. Velocidad de conexi&oacute;n (en bps)<br>
+          2. Bytes recibidos<br>
+          3. Bytes enviados<br>
+          4. Tiempo de conexi&oacute;n (en milisegundos). Bajo Windows 95/98/Me 
+          el valor devuelto en este caso siempre es cero debido a limitaciones 
+          del sistema operativo.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div>
+<hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>XML: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+    <td valign="center"><span style="font:8pt Verdana"><i>iFox.XML</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>Parser</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          Valor por defecto: <b>Msxml2.DOMDocument.4.0</b><br>
+          <br>
+          Para el funcionamiento del m&eacute;todo <b>XMLtoCursor</b> iFox.XML 
+          utiliza el parser XML de Microsoft (<a href="http://www.msdn.microsoft.com/xml">www.msdn.microsoft.com/xml</a>). 
+          Por defecto <b>iFox.XML</b> utiliza la versi&oacute;n 4 pero es posible 
+          indicar que se debe utilizar otra versi&oacute;n estableciendo esta 
+          propiedad con el ID de la clase.</td>
+      </tr>
+      <tr>
+        <td><b>XSDType</b></td>
+        <td>Tipo de valor: <b>Num&eacute;rico</b> <br>
+          Valor por defecto: <b>XSD_INLINE</b><br>
+          <br>
+          Indica como debe generarse el esquema:<br>
+          XSD_NONE: No se genera ning&uacute;n tipo de esquema.<br>
+          XSD_INLINE: Se genera un esquema &quot;inline&quot; dentro del c&oacute;digo 
+          XML generado.<br>
+          XSD_EXTERNAL: No implementado. Se reserva para futuras versiones.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>AddTable</b></td>
+        <td> Par&aacute;metros: <strong>cTable as String</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Agrega una tabla para que sea incluida en el c&oacute;digo XML generado 
+          por el m&eacute;todo <b>CursortoXML</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>CursortoXML</b></td>
+        <td>Par&aacute;metros: <strong>cFile as String (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>L&oacute;gical / String</strong><br>
+          <br>
+          Gen&eacute;ra el c&oacute;digo XML correspondiente al contenido de las 
+          tablas indicadas utilizando el m&eacute;todo <b>AddTable</b>.<br>
+          <br>
+          Si se indica el par&aacute;metro <b>cFile</b> el resultado ser&aacute; 
+          escrito directamente en ese archivo, eliminando todo contenido existente. 
+          La respuesta ser&aacute; del tipo l&oacute;gico e indicar&aacute; si 
+          se ha podido generar el archivo exitosamente.<br>
+          <br>
+          Si no se indica el par&aacute;metro <b>cFile</b> el resultado ser&aacute; 
+          del tipo string y contendr&aacute; el c&oacute;digo XML generado.</td>
+      </tr>
+      <tr> 
+        <td><b>WriteStartDocument</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Este m&eacute;todo se utiliza cuando se genera el c&oacute;digo XML 
+          din&aacute;micamente.<br>
+          <br>
+          Escribe la etiqueta ra&iacute;z, esta etiqueta es necesaria para que 
+          el c&oacute;digo XML sea v&aacute;lido. Este m&eacute;todo debe ser 
+          el primero en ejecutarse y la etiqueta debe ser cerrada al finalizar 
+          el proceso utilizando el m&eacute;todo <b>WriteEndDocument</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>WriteEndDocument</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Este m&eacute;todo se utiliza cuando se genera el c&oacute;digo XML 
+          din&aacute;micamente.<br>
+          <br>
+          Cierra la etiqueta ra&iacute;z creada por <b>WriteStartDocument</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>WriteStartElement</b></td>
+        <td>Par&aacute;metros: <strong>cName as String</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Este m&eacute;todo se utiliza cuando se genera el c&oacute;digo XML 
+          din&aacute;micamente.<br>
+          <br>
+          Escribe la etiqueta inicial de un elemento.</td>
+      </tr>
+      <tr>
+        <td><b>WriteEndElement</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Este m&eacute;todo se utiliza cuando se genera el c&oacute;digo XML 
+          din&aacute;micamente.<br>
+          <br>
+          Escribe la etiqueta de cierre de un elemento creado por <b>WriteStartElement</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>WriteElementString</b></td>
+        <td>Par&aacute;metros: <strong>cName as String, cValue as String</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Este m&eacute;todo se utiliza cuando se genera el c&oacute;digo XML 
+          din&aacute;micamente.<br>
+          <br>
+          Escribe un nodo dentro de un elemento creado por <b>WriteStartElement</b>. 
+          El par&aacute;metro cName indica el nombre otorgado y el par&aacute;metro 
+          cValue el valor asignado.</td>
+      </tr>
+      <tr> 
+        <td><b>GetXML</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>String</strong><br>
+          <br>
+          Este m&eacute;todo se utiliza cuando se genera el c&oacute;digo XML 
+          din&aacute;micamente.<br> <br>
+          Devuelve el c&oacute;digo XML generado din&aacute;micamente.</td>
+      </tr>
+      <tr> 
+        <td><b>XMLToCursor</b></td>
+        <td>Par&aacute;metros: <strong>cXML as String, cCursorList as String (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Este m&eacute;todo convierte el c&oacute;digo XML indicado en el par&aacute;metro 
+          <b>cXML</b> en uno o m&aacute;s cursores.<br>
+          <br>
+          En el par&aacute;metro <b>cCursorList</b> es posible indicar el nombre 
+          que tomar&aacute; el cursor generado. Si el c&oacute;digo XML incluye 
+          m&aacute;s de un cursor se debe indicar los nombres deseados separ&aacute;ndolos 
+          con comas. Si este par&aacute;metro no es indicado se utilizar&aacute;n 
+          los nombres asignados en el c&oacute;digo XML por lo que solamente es 
+          recomendable ignorarlo cuando se sabe que el c&oacute;digo ha sido generado 
+          utilizando una nomenclatura conocida. Si el c&oacute;digo XML incluye 
+          m&aacute;s cursores que los indicados en <b>cCursorList</b> estos ser&aacute;n 
+          ignorados, de esta forma se evita que un archivo XML malformado genere 
+          una cantidad excesiva de cursores.<br>
+          <br>
+          Si el c&oacute;digo XML no posee un esquema todos los campos del cursor 
+          resultante ser&aacute;n del tipo caracter ya que ser&aacute; imposible 
+          establecer el tipo correcto.<br>
+          <br>
+          Nota: Este m&eacute;todo requiere de al menos la versi&oacute;n 3 del 
+          parser XML de Microsoft. Consultar tambi&eacute;n la documentaci&oacute;n 
+          de la propiedad <b>Parser</b>. </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

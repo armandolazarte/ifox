@@ -1,0 +1,97 @@
+BODY
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 8pt;
+}
+
+
+A
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 8pt;
+    COLOR: blue;
+    TEXT-DECORATION:underline;
+}
+
+
+A:HOVER
+{
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 8pt;
+    COLOR: red;
+    TEXT-DECORATION:underline;
+}
+
+
+PRE
+{
+    FONT-FAMILY: Courier New
+    FONT-SIZE: 9;
+    BACKGROUND: #EEEEEE;
+}
+
+.top
+{
+    BORDER-RIGHT: 1px outset;
+    BORDER-TOP: 1px outset;
+    BORDER-LEFT: 1px outset;
+    BORDER-BOTTOM: 1px outset;
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 10pt;
+    BACKGROUND-COLOR: #9ccfff
+}
+
+
+.text
+{
+   padding: 0px 5px 0px 10px;
+   FONT-FAMILY: Verdana;
+   FONT-SIZE: 8pt;
+}
+
+
+.tabletext
+{
+   FONT-FAMILY: Verdana;
+   FONT-SIZE: 8pt;
+}
+
+
+div.tablediv
+{
+   width: 100%;
+   margin-top: -.4em;
+}
+
+
+table.htmltable
+	{
+	width: 100%;
+	margin-top: .6em;
+	margin-bottom: .3em;
+	border-width: 1px 1px 0px 0px;
+	border-style: solid;
+	border-color: #999999;
+	background-color: #999999; 
+	font-size: 100%;
+	}
+table.htmltable th, table.htmltable td
+	{ 
+	border-style: solid;
+	border-width: 0px 0px 1px 1px;
+	border-style: solid;
+	border-color: #999999;
+	padding: 4px 6px;
+	text-align: left;
+	}
+table.htmltable th	
+	{ 
+	background: #cccccc;
+	vertical-align: bottom;
+	}
+table.htmltable td	
+	{
+	background: #ffffff;
+	vertical-align: top;
+	}
+

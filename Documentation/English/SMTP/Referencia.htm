@@ -1,0 +1,498 @@
+<html>
+<head>
+<title>SMTP: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.SMTP</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>SenderName</b></td>
+        <td>Value type: <b>String</b><br>
+          <br>
+          The sender's name. This is the name the receiver will see.</td>
+      </tr>
+      <tr> 
+        <td><b>SenderEMail</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          The sender's E-Mail. This is the address the receiver will see.</td>
+      </tr>
+      <tr> 
+        <td><b>Subject</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          Message subject.</td>
+      </tr>
+      <tr> 
+        <td><b>Priority</b></td>
+        <td>Value type:<b> <b>Integer</b><br>
+          </b>Default value: <b>SMTP_PRIORITY_NORMAL</b><br>
+          <br>
+          Message priority.</td>
+      </tr>
+      <tr>
+        <td><b>NotificationEMail</b></td>
+        <td>Value type:<b> <b>String</b><br>
+        </b><br>
+        Allows to ask the receiver a confirmation of the reception. The value of this property is the mail address to wich the notification must be sent.</td>
+      </tr>
+      <tr> 
+        <td><b>IncludeImages</b></td>
+        <td> 
+          <p>Value type: <b>Logical</b> <br>
+            <br>
+            Indicates if the images should be included with the message. This 
+            property applies only to HTML messages. In text-mode messages it will 
+            be ignored.<br>
+            <br>
+            If this property is True before sending the message all the occurrences 
+            of the &lt;img&gt; tag will be searched and the images referenced 
+            will be added to the message. The full path of the images should be 
+            included. When <b>HTMLBodyType</b> property contains the value SMTP_BODY_FILE, 
+            the messages can be in the same folder as the body. Relative paths 
+            are not supported.<br>
+            <br>
+            This option should be carefully used, as images are included with 
+            the message and its size can be increased beyond what's desirable.</p>          </td>
+      </tr>
+      <tr>
+        <td><b>IncludeMusic</b></td>
+        <td> 
+          <p>Value type: <b>Logical</b> <br>
+            <br>
+            Indicates if the backgorund music should be included with the message. 
+            This property applies only to HTML messages. In text-mode messages 
+            it will be ignored.<br>
+            <br>
+            If this property is True before sending the message all the occurrences 
+            of the &lt;bgsound&gt; tag will be searched and the files referenced 
+            will be added to the message. The full path of the images should be 
+            included. When <b>HTMLBodyType</b> property contains the value SMTP_BODY_FILE, 
+            the messages can be in the same folder as the body. Relative paths 
+            are not supported.<br>
+            <br>
+            This option should be carefully used, as sound files are included 
+            with the message and its size can be increased beyond what's desirable.</p>          </td>
+      </tr>
+      <tr> 
+        <td><b>Body</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          Contains the message body in text format. If the <b>BodyType</b> contains 
+          the value SMTP_BODY_FILE this property should be set with the name of 
+          a file that contains the message text.</td>
+      </tr>
+      <tr> 
+        <td><b>BodyCharset</b></td>
+        <td>Value type: <b>String</b> <br>
+          Default value: <b>iso-8859-1</b> <br>
+          <br>
+          Indicates the codification used for the message body. This value is 
+          not used for any kind of conversion and is assumed that the message 
+          text is provided correctly encoded. Despite this <b>iFox.SMTP</b> encodes 
+          all the messages to use a maximun of 7 bits so they can be processed 
+          by any SMTP server.</td>
+      </tr>
+      <tr> 
+        <td><b>BodyType</b></td>
+        <td>Value type: <b>String</b> <br>
+          Default value: <b>SMTP_BODY_STRING</b><br>
+          <br>
+          Indicates how to handle the message body. Allowed values are:<br>
+          <br>
+          <b>SMTP_BODY_STRING</b>: The Body property must be set with the message 
+          text.<br>
+          <br>
+          <b>SMTP_BODY_FILE</b>: The Body property must be set with the name of 
+          a file that contains the text.</td>
+      </tr>
+      <tr> 
+        <td><b>HTMLBody</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          Contains the message body in HTML format. If the <b>HTMLBodyType</b> 
+          contains the value SMTP_BODY_FILE this property should be set with the 
+          name of a file that contains the message text.<br>
+          <br>
+          Not all E-Mail clients can handle messages in HTML format, so it's advisable 
+          to set the <b>Body</b> property with a text only version of the message. 
+          <b>iFox.SMTP</b> is capable to send the message including both formats 
+          at the same time.<br>
+          <br>
+          If this property is set to an empty string a text only message will 
+          be sent.</td>
+      </tr>
+      <tr> 
+        <td><b>HTMLBodyCharset</b></td>
+        <td>Value type: <b>String</b> <br>
+          Default value: <b>iso-8859-1</b> <br>
+          <br>
+          Similar to the <b>BodyCharset</b> property but it applies to HTML messages.</td>
+      </tr>
+      <tr> 
+        <td><b>HTMLBodyType</b></td>
+        <td>Value type: <b>String</b> <br>
+          Default value: <b>SMTP_BODY_STRING</b><br>
+          <br>
+          Similar to the <b>BodyType</b> property but it applies to HTML messages.</td>
+      </tr>
+      <tr>
+        <td><b>RTFBody</b></td>
+        <td>Value type: <b>String</b> <br>
+            <br>
+          Contains the message body in RTF format. If the <b>RTFBodyType</b> contains the value SMTP_BODY_FILE this property should be set with the 
+          name of a file that contains the message text.<br>
+              <br>
+          Not all E-Mail clients can handle messages in RTF format, so it's advisable 
+          to set the <b>Body</b> property with a text only version of the message. <b>iFox.SMTP</b> is capable to send the message including both formats 
+          at the same time.<br>
+              <br>
+          If this property is set to an empty string a text only message will 
+          be sent.</td>
+      </tr>
+      <tr>
+        <td><b>RTFBodyCharset</b></td>
+        <td>Value type: <b>String</b> <br>
+          Default value: <b>iso-8859-1</b> <br>
+          <br>
+          Similar to the <b>BodyCharset</b> property but it applies to RTF messages.</td>
+      </tr>
+      <tr>
+        <td><b>RTFBodyType</b></td>
+        <td>Value type: <b>String</b> <br>
+          Default value: <b>SMTP_BODY_STRING</b><br>
+          <br>
+          Similar to the <b>BodyType</b> property but it applies to RTF messages.</td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td>Value type: <b>Long</b> <br>
+          <br>
+          Is case of an error this property will contain the corresponding error 
+          number. The possible values are:<br>
+          <br>
+          1. Connection error<br>
+          2. There's no response from the SMTP server<br>
+          3. The sender's E-Mail address is invalid<br>
+          4. No receiver has been set<br>
+          5. The SMTP server has responded with an error message<br>
+          6. The SMTP server has rejected the sender's E-Mail<br>
+          7. The SMTP server has rejected any of the receivers<br>
+          8. The SMTP server uses an authentication method not supported by iFox.<br>
+9. Error during the authentication process. The SMTP server has rejected the user name.<br>
+10. Error during the authentication process. The SMTP server has rejected the password. <br>
+11. Error during the authentication process. The SMTP server has rejected the user name or the password.<br>
+12. Error while trying to cancel the current message. <br>          
+          999. The <b>SendNextPart</b> method has been called after all the message 
+          has been sent.</td>
+      </tr>
+      <tr> 
+        <td><b>ExtraErrorInfo</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          Contains an extended description of the error. The value depends of 
+          the error number indicated by the <b>ErrorNumber</b> property.<br>
+          <br>
+          3. Sender's E-Mail.<br>
+          5. The response obtained from the SMTP server.<br>
+          6. The response obtained from the SMTP server. <br>
+          7. The rejected E-Mail address.<br>        </td>
+      </tr>
+      <tr> 
+        <td><b>SMTPErrorNumber</b></td>
+        <td>Value type: <b>Long</b> <br>
+          <br>
+          If the <b>ErrorNumber</b> property contains the values 5, 6 or 7 this 
+          property will contain the error code sent by the SMTP server.</td>
+      </tr>
+      <tr> 
+        <td><b>SMTPResponses</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          This property will contain all the answers received from the SMTP server. 
+          This information can be useful for error detection or log creation.</td>
+      </tr>
+      <tr> 
+        <td><b>PartSize</b></td>
+        <td>Value type: <b>Long</b> <br>
+          Default value: <b>1024</b><br>
+          <br>
+          The amount for bytes to send in any call to the <b>SendNextPart</b> 
+          method <br>
+          <br>
+          <b>You should not modify this value after the sending has begun.</b></td>
+      </tr>
+      <tr> 
+        <td><b>EOD</b></td>
+        <td>Value type: <b>Logical</b> <br>
+          <br>
+          End of Data. When sending a message using the <b>SendNextPart</b> method 
+          this property will indicate if all the message has been sent.</td>
+      </tr>
+      <tr> 
+        <td><b>ValidAddresses</b></td>
+        <td>Value type: <b>Logical</b> <br>
+          <br>
+          By default <b>iFox.SMTP</b> performs a basic validation over the email 
+          addresses used, rejecting the ones that are no valid. If you don't want 
+          to perform this validation, set this property to <b>False</b>. Default 
+          validation controls just some syntactical characteristics of the address 
+          and its acceptance doesn't mean that the email address is actually a 
+          valid one.<br>        </td>
+      </tr>
+      <tr> 
+        <td><b>BodyData</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          After a call to the <b>PrepareMail</b> method this property will contain 
+          the text to the message to sent. You can use it to perform a message 
+          preview.</td>
+      </tr>
+      <tr>
+        <td><b>AuthenticationMethod</b></td>
+        <td>Value type: <b>Integer</b> <br>
+          <br>
+          Sets the authentication method to use (if the SMTP server requires authentication) . Possible values are:<br>
+<br>
+0. No authentication.<br>
+1. POP3 authentication. Although it's not very common this type of authentication is still used by some servers. In this method the client logs in to a predeterminated POP3 server, if the connection is succesfull the client can use the SMTP server.<br>
+2. SMTP authentication.</td>
+      </tr>
+      <tr>
+        <td><b>UserName</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+Sets the user name to use in the authentication process. Depending on the value of the <b>AuthenticationMethod</b> property this is the POP3 or SMTP user name.</td>
+      </tr>
+      <tr>
+        <td><b>Password</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+Sets the password to use in the authentication process. Depending on the value of the <b>AuthenticationMethod</b> property this is the POP3 or SMTP password.</td>
+      </tr>
+      <tr>
+        <td><b>POP3Server</b></td>
+        <td>Value type: <b>String</b> <br>
+          <br>
+          If the 
+        <b>AuthenticationMethod</b> property has been set to 1 this property must be set with the address of the POP3 server.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>AddRecipient</b></td>
+        <td>Parameters: <strong>cName as String, cEMail as String </strong> 
+          <p>Returns: <strong>Logical</strong><br>
+          </p>
+          <p>Adds a recipient to the message. If you want to send the message 
+            to multiple recipients you should call this method for every one of 
+            them.</p>
+          <p>Return value indicates if the recipient has been accepted or rejected 
+            due to an invalid email address.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>AddCC</b></td>
+        <td>Parameters: <strong>cName as String, cEMail as String </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          This method is simmilar to <b>AddRecipient</b> but applicable just to 
+          type CC recipients.</td>
+      </tr>
+      <tr> 
+        <td><b>AddBCC</b></td>
+        <td>Parameters: <strong>cName as String, cEMail as String </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>This method is simmilar to <b>AddRecipient</b> but applicable just 
+            to type BCC (hidden) recipients.</p>
+          <p>As recipient name is not needed, in this case the <strong>cName</strong> 
+            parameter is ignored. This parameter is reserved for future versions 
+            of <b>iFox.SMTP</b>.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>AddAttachment</b></td>
+        <td>Parameters: <strong>cFile as String </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Attaches the file given in the <strong>cFile</strong> parameter to 
+            the message. If you want to attach multiple files you have to call 
+            this method for every one of them.</p>
+          <p>Return value indicates if the file has been accepted or rejected 
+            if it doesn't exist.<br>
+          </p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>ValidMailAddress</b></td>
+        <td>Parameters: <strong>cAddress as String </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Indicates if an email address is valid. This method can't indicate 
+            if the given address actually exists, but it verifies if it complies 
+            with a set of standard rules, for instance, that it has the @ character.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>NewMessage</b></td>
+        <td>Parameters: <strong>cAddress as String </strong> 
+          <p>Returns: <strong>None</strong></p>
+          <p>Restarts the object so it's ready to send a new message. <strong>All</strong> 
+            the properties returns to their default values.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>ConnectSend</b></td>
+        <td>Parameters: <strong>cServer as String, nPort as Long (optional) </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>This is the higher level send function. It connects to the SMTP server, 
+            then sends the message and finally disconnects.</p>
+          <p>The parameter <strong>cServer</strong> must contain the name or IP 
+            address of the SMTP server. The parameter <strong>nPort</strong> indicates 
+            the port number to use. When not indicated, it will use the protocol 
+            standard port: 25.</p>
+          <p>Return value indicates if the message has been succesfully sent.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>Connect</b></td>
+        <td>Parameters: <strong>cServer as String, nPort as Long (optional) 
+          </strong>
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Establishes a connection with a SMTP server.</p>
+          <p>The parameter <strong>cServer</strong> must contain the name or IP 
+            address of the SMTP server. The parameter <strong>nPort </strong>indicates 
+            the port number to use. When not indicated, it will use the protocol 
+            standard port: 25.</p>
+          <p>Before releasing the object the connection must be closed using the 
+            <b>Disconnect</b> method.</p>
+        Return value indicates if connection has been succesfully established.</td>
+      </tr>
+      <tr> 
+        <td><b>Disconnect</b></td>
+        <td>Parameters: <strong>lFastDisconnect as Logical (optional)</strong>
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Closes a connection established with the <b>Connect</b> method.<br>
+            <br>
+            Return value indicates if an error occurred while trying to close 
+            the connection.<br>
+            <br>
+          The <strong>lFastDisconnect</strong> parameter instructs <strong>iFox.SMTP</strong> to not wait until getting the server's response. You can use this parameter to improve the response speed when you are interrupting a transfer. If <strong>lFastDisconnect</strong> is True the method response value and the ErrorNumber value may be incorrect. </p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>Send</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Send the message. A connection should have been previously established 
+            with the SMTP server using the <b>Connect</b> method.</p>
+          <p>Another message can be sent using the same connection calling the 
+            <b>NewMessage</b> method. Take in consideration that some SMTP servers 
+            doesn't send the message immediately, but put them in a waiting queue 
+            until the session is closed. You have to take care not to surpass 
+            the maximum amount of messages in the queue.</p>
+          <p>Return value indicates if an error occurred trying to send the message.<br>
+          </p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>StartPartialSending</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Starts a partial send. This send method could be useful to send huge 
+            messages without the application not responding to the user or when 
+            you want to display a progress bar.</p>
+          Return value indicates if an error occurred. </td>
+      </tr>
+      <tr> 
+        <td><b>SendNextPart</b></td>
+        <td>Parameters:<strong>nRetries as Integer (optional) </strong>
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Sends the next part of a message. You have to had called previously 
+            the <b>StartPartialSending</b> method. this method has to be called 
+            several times until the <b>EOD</b> property indicates that the message 
+            has been totally sent. The size of each part can be set using the 
+            <b>PartSize</b> property. After the send is finished you have to call 
+            the <b>EndPartialSending</b> method.<br>
+            <br>
+            The <strong>nRetries</strong> parameters allows to ask the component the amount of times if must retry the data transfer. This value can help if you are using the component over a bad internet connection.The default value of this parameter is <strong>3</strong>. <br>
+            <br>
+          Return value indicates if an error occurred. </p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>EndPartialSending</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Finishes the partial send of a message.</p>
+          <p>Return value indicates if an error occurred.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>GetCurrentPosition</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Long</strong></p>
+          <p>Inidcates the current position during a partial send. Obviously, 
+            this value will be lower or equal to the one obtained with the <b>GetMessageSize 
+            method</b>. Return value is valid only after a call to the <b>StartPartialSending</b> 
+            method.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>GetMessageSize</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>Long</strong></p>
+          <p>Indicates the message size in bytes. Return value is valid only after 
+            a call to the <b>StartPartialSending, Send</b> or <b>ConnectSend</b> 
+            methods.<br>
+          </p>
+          </td>
+      </tr>
+      <tr>
+        <td><b>PrepareMail</b></td>
+        <td>Parameters: <strong>None </strong> 
+          <p>Returns: <strong>None</strong></p>
+          <p>Builds the message to send. After a call to this method <b>BodyData</b> 
+            property will hold the message to send. This way you can display a 
+            preview of the message.</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

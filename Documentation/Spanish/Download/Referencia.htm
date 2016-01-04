@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Download: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+    <td valign="center"><span style="font:8pt Verdana"><i>iFox.Download</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>Type</b></td>
+        <td>Tipo de valor: <b>Integer</b> <br>
+          Valor por Defecto: <b>DOWNLOAD_STRING</b><br>
+          <br>
+          Indica la forma en que se proporciona la secuencia de bytes a devolver. 
+          Los valores permitidos son: 
+          <p><b>DOWNLOAD_STRING</b>: Se debe establecer la propiedad <strong>Data</strong> 
+            con la secuencia de bytes a devolver.</p>
+          <p><b>DOWNLOAD_FILE</b>: Se debe establecer la propiedad <strong>Data</strong> 
+            con el nombre de un archivo que contenga la secuencia de bytes a devolver.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>FileName</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Indica el nombre que se asignar&aacute; al archivo &quot;virtual&quot; 
+          generado. En caso de utilizar el <b>iFox.Download</b> para generar un 
+          archivo a descargar este es el nombre que se mostrar&aacute; al usuario. 
+          Si la propiedad <strong>Type</strong> contiene el valor <b>DOWNLOAD_FILE</b> 
+          y no se ha asignado un valor a esta propiedad se utilizar&aacute; el 
+          nombre del archivo f&iacute;sico empleado.</td>
+      </tr>
+      <tr>
+        <td><b>Data</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+          Contiene la secuencia de bytes a devolver. Si la propiedad <strong>Type</strong> 
+          contiene el valor <b>DOWNLOAD_FILE</b> esta propiedad debe establecerse 
+          con el nombre de un archivo que contenga la secuencia de bytes a devolver.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>Send</b></td>
+        <td> Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Env&iacute;a la secuencia de bytes indicada en la propiedad <b>Data</b> 
+          simulando que se trata de un archivo f&iacute;sico. De acuerdo a la 
+          forma en que <b>iFox.Download</b> sea utilizado el archivo generado 
+          puede ser utilizado dentro de una p&aacute;gina web o descargado por 
+          el usuario.<br>
+          <br>
+          <b>Nota:</b> Una p&aacute;gina ASP que utilice <b>iFox.Download</b> 
+          no debe generar ningun otro tipo de respuesta a traves del m&eacute;todo 
+          <b>Response.Write</b> o por medio de c&oacute;digo HTML incrustado en 
+          la p&aacute;gina ya que esta respuesta ser&iacute;a agregada al archivo 
+          generado. Los encabezados HTTP tambi&eacute;n son alterados, por lo 
+          tanto en caso de haber enviado alguna respuesta antes de llamar a este 
+          m&eacute;todo se producir&aacute; un error en tiempo de ejecuci&oacute;n.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

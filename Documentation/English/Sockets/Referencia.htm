@@ -1,0 +1,380 @@
+<html>
+<head>
+<title>Sockets: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.Sockets</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+
+      <tr> 
+        <td><b>PingAddress</b></td>
+        <td>
+          <p>Value type: <b>String</b> <br>
+            <br>
+            After a succesful call to <b>Ping</b> method, this property will hold 
+            the address of the server that actually answered.</p>
+          </td>
+      </tr>
+
+      <tr>
+        <td><b>PingError</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            After a <i>unsuccesful</i> call to <b>Ping</b> method, this property 
+            will hold the related error number.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>PingResponseSize</b></td>
+        <td> 
+          <p>Value type: <b>Integer</b> <br>
+            <br>
+            After a succesful call to <b>Ping</b> method, this property will hold 
+            the byte size of the response.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>PingTime</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            After a succesful call to <b>Ping</b> method, this property will hold 
+            the response time (in milliseconds).</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>Response</b></td>
+        <td> 
+          <p>Value type: <b>String</b><br>
+            <br>
+            After a succesful call to any of the <b>SendReceive</b>, <b>WaitFor</b> 
+            or <b>WaitForSize </b>methods, this property will hold the obtained 
+            answer.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>SocketClosed</b></td>
+        <td>
+          <p>Value type: <b>Logical</b><br>
+          </p>
+          <p>After a call to the <b>Read</b> method, this property allows to determine 
+            wether the socket has being disconnected by the other end.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>StartOK</b></td>
+        <td>
+          <p>Value type: <b>Logical</b><br>
+            <br>
+            Indicates that Winsock services could be properly started. The value 
+            of this property is established during object creation and allows 
+            to determine if the user has the right version of Winsock. If this 
+            property value is False, any call to component methods will be rejected.</p>
+          </td>
+      </tr>
+
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+
+      <tr> 
+        <td><b>AcceptConnections</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>None</strong></p>
+          <p>Check for the existence of a connection pending for accepting. If 
+            it does exists, accepts it and returns the socket number assigned 
+            to the connection. If there are no pending connections, it returns 
+            zero. </p>
+          <p><b>nSocket</b> parameter indicates the socket number obtained from 
+            a succesful call to the <b>Listen</b> method.<br>
+            <br>
+            As COM componentes created with Visual FoxPro doesn't allow for event 
+            raising, a server application created using <b>iFox.Sockets</b> have 
+            to continually call this method to be able to accept connections requested 
+            by clients.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>Close</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>None</strong></p>
+          <p>Closes a socket created by <b>Connect</b> or <b>Listen</b> methods.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>Connect</b></td>
+        <td>Parameters: <strong>cHost as String, nPort as Long </strong> 
+          <p>Returns: <strong>Long</strong></p>
+          <p>Establishes a connection with the server indicated by <b>cHost</b>. 
+            This parameter can be a host name (for instance: <b>microsoft.com</b>) 
+            or an IP address (for instance: <b>207.46.230.219</b>). <b>nPort</b> 
+            indicates the port number to use.<br>
+            <br>
+            If the connection can be succesfully established the return value 
+            will be the corresponding socket number. Before releasing the component 
+            all the sockets created should be closed using the Close method to 
+            avoid lossing resources.</p>
+          <p>If the connection couldn't be established, return value will be zero.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>GetIPFromName</b></td>
+        <td>Parameters: <strong>cHost as String </strong> 
+          <p>Returns: <strong>String</strong></p>
+          <p>Returns the IP address corresponding to <b>cHost</b>. If more than 
+            one exists, values will be separated by comma. If an error occurs, 
+            it will return an empty string.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>GetNameFromIP</b></td>
+        <td>Parameters: <strong>cIP as String </strong> 
+          <p>Returns: <strong>String</strong></p>
+          <p>Returns the host name corresponding to an IP address. If more than 
+            one exists, values will be separated by comma. If an error occurs, 
+            it will return an empty string.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>GetLocalHost</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>String</strong></p>
+          <p>Returns the local host name for a given connection.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>GetLocalHostIP</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>String</strong></p>
+          <p>Returns the local IP address for a given connection.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>GetPort</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>Long</strong></p>
+          <p>Returns the port name to which a given socket is connected. If an 
+            error occurs, it will return -1.</p>
+          </td>
+      </tr>
+
+
+      <tr> 
+        <td><b>GetRemoteHost</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>String</strong></p>
+          <p>Returns the remote host name for a given connection.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>GetRemoteHostIP</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Return: <strong>String</strong></p>
+          Returns the remote IP address for a given connection.</td>
+      </tr>
+
+      <tr> 
+        <td><b>IPAddress</b></td>
+        <td>Parameters: <strong>Ninguno </strong> 
+          <p>Returns: <strong>String</strong></p>
+          Returns the IP address assigned to the computer running the component. 
+          If more than one exists they will be returned separated by commas. If 
+          an error occurs, it will return an empty string.</td>
+      </tr>
+
+      <tr> 
+        <td><b>Listen</b></td>
+        <td>Parameters: <strong>nPort as Long, cIP as String (optional) </strong> 
+          <p>Returns: <strong>Long</strong></p>
+          <p>Creates a &quot;listening&quot; socket used to accept connections 
+            in server applications. <b>nPort</b> parameter indicates the port 
+            number to &quot;listen&quot; to. There can't be more than one listening 
+            socket for a given port (created by <b>iFox.Sockets</b> or any other 
+            application). <b>cIP</b> parameter indicates the IP address to which 
+            the created socket will be bound. If not specified, the first IP assigned 
+            to the workstation will be used (see <b>IPAddress</b> method).<br>
+          </p>
+          <p>Return value will be the created socket number. This socket will 
+            wait for new connections to the indicated port, but it will not accept 
+            them automatically. This should be explicitly done trough a call to 
+            the method <b>AcceptConnections</b>.<br>
+            <br>
+            It is possible to create multiple listening sockets if they are assigned 
+            to different ports.<br>
+            <br>
+            Like any other socket, a listening socket should be closed before 
+            releasing the component using the <strong>Close</strong> method to 
+            avoid lossing resources.</p>
+          <p>If an error occurs, return value will be zero.</p>
+          </td>
+      </tr>
+
+
+      <tr>
+        <td><b>Ping</b></td>
+        <td>Parameters: <strong>cHost as String, nDataSize as Integer (optional), 
+          nTimeOut as Long (optional) </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Performs a Ping against the host indicated by <b>cHost</b> (it is 
+            also possible to use an IP address).<br>
+            <br>
+            <b>nDataSize</b> parameter indicates the byte size of the packet to 
+            send. Default value is 32.</p>
+          <p><b>nTimeOut</b> parameter indicates the maximum waiting time in milliseconds. 
+            Default value is 500.</p>
+          <p>When calling this method the following situations can arise:<br>
+            <br>
+            1. Succesful call. Return value is True and the properties <b>PingAddress</b>, 
+            <b>PingTime</b> and <b>PingResponseSize</b> contains the obtained 
+            results.<br>
+            <br>
+            2. Error. Return value is False and property <b>PingError</b> contains 
+            the related error number.<br>
+            <br>
+            3. Succesful call, but the response size is not the same of the request. 
+            Return value is false and property <b>PingError</b> contains the value 
+            -101. Properties <b>PingAddress</b>, <b>PingTime</b> and <b>PingResponseSize</b> 
+            contains the obtained results.<br>
+            <br>
+            4. Succesful call but the the obtained response doesn't match the 
+            data sent. Return value is False and property <b>PingError</b> contains 
+            the value -102. Properties <b>PingAddress</b>, <b>PingTime</b> and 
+            <b>PingResponseSize</b> contains the obtained results.<br>
+            <br>
+            Note: This method uses the ICMP.DLL library, that even being widely 
+            available, it is not considered by Microsoft as part of the operating 
+            system, and can be eliminated in future versions.</p>
+          </td>
+      </tr>
+
+      <tr> 
+        <td><b>Read</b></td>
+        <td>Parameters: <strong>nSocket as Long </strong> 
+          <p>Returns: <strong>String</strong></p>
+          <p>Reads pending messages. <b>nSocket</b> parameter indicates the socket 
+            number obtained by a call to the <b>Connect</b> or <b>AcceptConnections</b> 
+            methods.<br>
+            <br>
+            The obtained answer will be the received messages for the indicated 
+            socket. If the return is an empty string the property <b>SocketClosed</b> 
+            should be checked. If it is True it indicates that the connections 
+            has been closed and can&acute;t be used anymore. Anyway, it should 
+            be closed using the <b>Close</b> method.</p>
+          <p>As COM components created by Visual FoxPro doesn't allow for event 
+            raising, an application created using <b>iFox.Sockets</b> has to regularly 
+            call this method to get the received messages.</p>
+          </td>
+      </tr>
+
+      
+<tr> 
+        <td><b>Send</b></td>
+        <td>Parameters: <strong>nSocket as Long, cData as String </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Sends a message. <b>nSocket </b>parameter indicates the socket number 
+            obtained by a call to <b>Connect</b> or <b>AcceptConnections</b> methods. 
+            <b>cData</b> parameter indicates the mesage to send. The obtained 
+            response will indicate if the message has been succesfully sent.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>SendReceive</b></td>
+        <td>Parameters: <strong>nSocket as Long, cData as String, nTimeOut as 
+          Integer (Optional), nDelayBetweenRetries as Integer (Opcional)  </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Sends a message and waits for the answer. This method is a useful 
+            combination of the <b>Send</b> and <b>Read</b> to send a command and 
+            wait for the result as in an FTP or SMTP session.<br>
+            <br>
+            <b>nSocket </b>parameter indicates the socket number obtained by a 
+            call to <b>Connect</b> or <b>AcceptConnections</b> methods. <b>cData</b> 
+            parameter indicates the mesage to send.<br>
+            <br>
+            To avoid an infinite loop, 
+            <b>nTimeOut</b> parameter allows indicating a time (in seconds) to 
+            wait for an answer. Default value is 10.<br>
+            <br>
+            Sometimes, the response takes a long time to be received. In this case <strong>iFox.Sockets</strong> keeps reading the socket causing a high CPU utilization. The <strong>nDelayBetweenRetries</strong> parameter allows to set a delay (in seconds) between each call so the CPU will be free  to perform another tasks. If you use this parameter the suggested value is 0.5. <br>
+            <br>
+            If the operation has been succesfully completed return value will 
+            be True and <b>Response</b> property will contained the received answer.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>WaitFor</b></td>
+        <td>Parameters: <strong>nSocket as Long, cPattern as String (optional), 
+          nTimeOut as Integer (optional) </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>Receives messages until a given string is found. This method is a 
+            variant from <b>Read</b> method useful to wait for a handshake (for 
+            instance, in a POP3 session) or to wait for an specific answer.<br>
+            <br>
+            <b>nSocket </b>parameter indicates the socket number obtained by a 
+            call to <b>Connect</b> or <b>AcceptConnections</b> methods. <b>cPattern</b> 
+            parameter indicates the awaited answer. If this parameter is not specicied 
+            the method will consider the task accomplished when the first message 
+            arrives (whatever it is). To avoid an infinite loop, <b>nTimeOut</b> 
+            parameter allows indicating a time (in seconds) to wait for an answer. 
+            Default value is 10.</p>
+          <p>If the operation has been succesfully completed return value will 
+            be True and <b>Response</b> property will contained the received answer.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>WaitForSize</b></td>
+        <td>Parameters: <strong>nSocket as Long, nSize as Long, nTimeOut as Integer 
+          (optional) </strong> 
+          <p>Returns: <strong>Logical</strong></p>
+          <p>This method is simmilar to <b>WaitFor</b> but it waits until the 
+            bytes quantity indicated by <b>nSize</b> has been obtained.</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

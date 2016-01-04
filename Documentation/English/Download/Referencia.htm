@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Download: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+    <td valign="center"><span style="font:8pt Verdana"><i>iFox.Download</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>Type</b></td>
+        <td>
+          <p>Value type: <b>Integer</b> <br>
+            Default value: <b>DOWNLOAD_STRING</b><br>
+            <br>
+            Indicates the way in which the byte sequence would be returned. Allowed 
+            values are:</p>
+          <p><b>DOWNLOAD_STRING</b>: The <strong>Data</strong> property should 
+            be set with the byte sequence to return.</p>
+          <p><b>DOWNLOAD_FILE</b>: The <strong>Data</strong> property should be 
+            set with the filename containing the byte sequence to return.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>FileName</b></td>
+        <td>
+          <p>Value type: <b>String</b> <br>
+          </p>
+          <p>Indicates the name to assign to the generated &quot;virtual&quot; 
+            file. When using <b>iFox.Download</b> to generate a downloadable file, 
+            this is the name that would be shown to the user. If the <strong>Type</strong> 
+            property has the <b>DOWNLOAD_FILE</b> value and this property is not 
+            set, the physical filename will be used.</p>
+          </td>
+      </tr>
+      <tr>
+        <td><b>Data</b></td>
+        <td>
+          <p>Value type: <b>String</b><br>
+            <br>
+            Contains the byte sequence to return. If the <strong>Type</strong> 
+            property has the <b>DOWNLOAD_FILE</b> value, this property should 
+            be set with the filename containing the byte sequence to return.</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>Send</b></td>
+        <td> 
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>None</strong></p>
+          <p>Sends the byte sequence indicated in the Data property simulating 
+            a physical file. According to the way <b>iFox.Download</b> is used, 
+            the file can be hosted inside a web page or downloaded for the user.<br>
+            <br>
+            <b>Note:</b> An ASP page using <b>iFox.Download</b> should not generate 
+            another kind of response trough the <b>Response.Write</b> method or 
+            embedded HTML code on the page, as in this case this response would 
+            be added to the generated file. HTTP headers are also altered, so 
+            in case you sent any response before calling this method, a runtime 
+            error will arise.</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<html>
+<head>
+<title>HTTP: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.HTTP</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv><table class=htmltable cellspacing="0">
+<tr> 
+<th width=100>Nombre</th>
+<th>Descripci&oacute;n</th>
+</tr>
+
+<tr> 
+<td><b>ErrorNumber</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          En caso de producirse un error al ejecutar cualquiera de los m&eacute;todos 
+          esta propiedad contendr&aacute; el n&uacute;mero del error ocurrido.</td>
+</tr>
+<tr>
+  <td><strong>ConnectionType</strong></td>
+  <td>Tipo de valor: <b>Integer</b> <br>
+    <br>
+Indica la manera en que se accede a Internet. Los valores posibles son:<br>
+<br>
+0. Se utiliza la configuraci&oacute;n indicada en el Panel de Control de Windows. Este es el valor por defecto.<br>
+1. Se utiliza una conexi&oacute;n directa a Internet.<br>
+3. Se utiliza un proxy para acceder a Internet.</td>
+</tr>
+<tr>
+  <td><strong>ProxyServer</strong></td>
+  <td>Tipo de valor:<b> String </b><br>
+    <br>
+La direcci&oacute;n (y opcionalmente el puerto) del servidor proxy a utilizar cuando <strong>ConnectionType</strong> tiene el valor 3. <br>
+<br>
+<strong>Ejemplos: </strong> <br>
+192.168.0.90<br>
+192.168.0.90:750</td>
+</tr>
+<tr>
+  <td><strong>ProxyUserName</strong></td>
+  <td>Tipo de valor:<b> String </b><br>
+    <br>
+El nombre de usuario utilizado para identificarse ante el servidor proxy cuando <strong>ConnectionType</strong> tiene el valor 3. Si el servidor proxy no requiere autenticaci&oacute;n dejar esta propiedad en blanco. </td>
+</tr>
+<tr>
+  <td><strong>ProxyPassword</strong></td>
+  <td>Tipo de valor:<b> String </b><br>
+    <br>
+La clave utilizada para identificarse ante el servidor proxy cuando <strong>ConnectionType</strong> tiene el valor 3. Si el servidor proxy no requiere autenticaci&oacute;n dejar esta propiedad en blanco. </td>
+</tr>
+<tr>
+  <td><strong>IgnoreSSLErrors</strong></td>
+  <td>Tipo de valor:<b> L&oacute;gico</b><br>
+    <br> 
+    Indica que se permite acceder a p&aacute;ginas que tengan problemas con su certificado de seguridad. Permitir este acceso no necesariamente implica un riesgo, lo cual depender&aacute; del problema que tenga el certificado (el cual puede determinar navegando el sitio) y la confiabilidad del sitio a acceder.<br>
+    <br>
+    El valor por defecto de esta propiedad es <strong>Falso</strong>. </td>
+</tr>
+<tr>
+  <td><b>TransferSize</b></td>
+  <td>Tipo de valor: <b>Long</b> <br>
+    <br>
+Luego de una llamada existosa a <strong>StartAsyncGet</strong> o <strong>StartAsyncPost</strong> contiene la cantidad de bytes a transferir. Esta informaci&oacute;n puede ser utilizada para actualizar una barra de progreso. </td>
+</tr>
+<tr>
+  <td><b>CompletedTransfer</b></td>
+  <td>Tipo de valor: <b>Long</b> <br>
+    <br>
+Luego de una llamada existosa a <strong>StartAsyncGet</strong> o <strong>StartAsyncPost</strong> contiene la cantidad de bytes ya transferidos. Esta informaci&oacute;n puede ser utilizada para actualizar una barra de progreso. </td>
+</tr>
+<tr>
+  <td><b>EOT</b></td>
+  <td>Tipo de valor: <b>Logical</b> <br>
+    <br>
+    Luego de una llamada existosa a <strong>StartAsyncGet</strong> o <strong>StartAsyncPost</strong> indica si la transferencia ha sido completada. </td>
+</tr>
+
+</table>
+</div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>Get</b></td>
+        <td> Par&aacute;metros: <strong>cURL as String</strong><br> <br>
+          Respuesta: <strong>String</strong><br> <br>
+          Devuelve el contenido de la URL indicada por el par&aacute;metro <strong>cURL</strong></td>
+      </tr>
+      <tr>
+        <td><b>StartAsyncGet</b></td>
+        <td>Par&aacute;metros: <strong>cURL as String</strong><br>
+          <br>
+Respuesta: <strong>Logical</strong><br>
+<br>
+Devuelve el contenido de la URL indicada por el par&aacute;metro <strong>cURL </strong>en forma asincr&oacute;nica. Este m&eacute;todo permite monitorear el progreso de la transferencia.</td>
+      </tr>
+      <tr>
+        <td><strong>ContinueAsyncGet</strong></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+Respuesta: <strong>Logical</strong><br>
+<br>
+Contin&uacute;a una transferencia iniciada con<b> StartAsyncGet</b>. Ejecute este m&eacute;todo repetidamente hasta que la propiedad <strong>EOT</strong> contenga el valor <strong>Verdadero</strong>. <br>
+<br>
+La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+        exitosamente. </td>
+      </tr>
+      <tr>
+        <td><strong>EndAsyncGet</strong></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+Respuesta: <strong>Ninguna</strong><br>
+<br>
+Finaliza una transferencia iniciada con<b> StartAsyncGet</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>ClearPostFields</b></td>
+        <td> Par&aacute;metros: <strong>Ninguno</strong><br> <br>
+          Respuesta: <strong>Ninguna</strong><br> <br>
+          Reinicializa el objeto y lo prepara para simular el env&iacute;o de 
+          otro formulario.</td>
+      </tr>
+      <tr> 
+        <td><b>AddPostField</b></td>
+        <td> Par&aacute;metros: <strong>cField as String, cValue as String</strong><br> 
+          <br>
+          Respuesta: <strong>Ninguna</strong><br> <br>
+          Agrega un campo a un formulario &quot;virtual&quot; que luego ser&aacute; 
+          utilizado para simular una entrada de datos en una p&aacute;gina web.<br> 
+          <br>
+          El par&aacute;metro <strong>cField</strong> indica el nombre del campo 
+          y el par&aacute;metro <strong>cValue</strong> indica su contenido.</td>
+      </tr>
+      <tr> 
+        <td><b>AddPostFile</b></td>
+        <td> Par&aacute;metros: <strong>cField as String, cFile as String</strong><br> 
+          <br>
+          Respuesta: <strong>Ninguna</strong><br> <br>
+          Simular al m&eacute;todo <b>AddPostField</b> pero simula un campo del 
+          tipo <b>File</b> utilizado para subir un archivo.</td>
+      </tr>
+      <tr>
+        <td><strong>AddPostFieldasFile</strong></td>
+        <td>Par&aacute;metros: <strong>cField as String, cValue as String, cFile 
+          as String</strong><br> 
+          <br>
+          Respuesta: <strong>Ninguna</strong><br> <br>
+          Similar al m&eacute;todo <b>AddPostFile</b> pero en lugar de utilizar 
+          un archivo real existente en un disco local lo simula. El par&aacute;metro 
+          <strong>cValue</strong> se debe establecer con el contenido del archivo 
+          mientras que el par&aacute;metro <strong>cFile</strong> indica el nombre 
+          de archivo a utilizar.</td>
+      </tr>
+      <tr> 
+        <td><b>Post</b></td>
+        <td> Par&aacute;metros: <strong>cServer as String, cURL as String, cUsername 
+          as String (opcional), cPassword as String (opcional), nPort as Long 
+          (opcional) </strong><br> <br>
+          Respuesta: <strong>String</strong><br> <br>
+          Simula el env&iacute;o de un formulario utilizando los campos indicados 
+          por los m&eacute;todos <b>AddPostField</b> y <b>AddPostFile</b>.<br> 
+          <br>
+          Los par&aacute;metros cServer y cURL indican el nombre del servidor 
+          y la URL (excluyendo el nombre del servidor obviamente) donde se encuentra 
+          la p&aacute;gina que recibir&aacute; los datos enviados. <br> <br>
+          En caso de ser necesario es posible indicar un nombre de usuario y clave 
+          de acceso a utilizar mediante los par&aacute;metros <b>cUserName</b> 
+          y <b>cPassword</b>.<br> <br>
+          El par&aacute;metro <strong>nPort</strong> indica el n&uacute;mero de 
+          puerto a utilizar, en caso de no ser especificado se utilizar&aacute; 
+          el puerto estandar establecido en el protocolo HTTP: 80. </td>
+      </tr>
+      <tr>
+        <td><strong>StartAsyncPost</strong></td>
+        <td>Par&aacute;metros: <strong>cServer as String, cURL as String, cUsername 
+          as String (opcional), cPassword as String (opcional), nPort as Long 
+          (opcional) </strong><br>
+<br>
+Respuesta: <strong>Logical</strong><br>
+<br>
+Simula el env&iacute;o de un formulario utilizando los campos indicados 
+        por los m&eacute;todos <b>AddPostField</b> y <b>AddPostFile</b> en forma asincr&oacute;nica. Este m&eacute;todo permite monitorear el progreso de la transferencia.</td>
+      </tr>
+      <tr>
+        <td><strong>ContinueAsyncPost</strong></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+Respuesta: <strong>Logical</strong><br>
+<br>
+Contin&uacute;a una transferencia iniciada con<b> StartAsyncPost</b>. Ejecute este m&eacute;todo repetidamente hasta que la propiedad <strong>EOT</strong> contenga el valor <strong>Verdadero</strong>. <br>
+<br>
+La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+        exitosamente. </td>
+      </tr>
+      <tr>
+        <td><strong>EndAsyncPost</strong></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+Respuesta: <strong>Ninguna</strong><br>
+<br>
+Finaliza una transferencia iniciada con<b> StartAsyncPost</b>. La respuesta del servidor se obtiene en este momento, por lo que la ejecuci&oacute;n de este m&eacute;todo puede demorar dependiendo del tama&ntilde;o de la respuesta y la velocidad de conexi&oacute;n. </td>
+      </tr>
+      <tr> 
+        <td><b>URLEncode</b></td>
+        <td> Par&aacute;metros: <strong>cURL as String</strong><br> <br>
+          Respuesta: <strong>String</strong><br> <br>
+          Codifica la cadena enviada en el par&aacute;metro <strong>cURL</strong> 
+          para que sea una URL v&aacute;lida, por ejemplo reemplazando los espacios 
+          por %20.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

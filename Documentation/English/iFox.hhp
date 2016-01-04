@@ -1,0 +1,77 @@
+[OPTIONS]
+Compiled File=iFox.chm
+Title=iFox
+Contents File=iFox.hhc
+Index File=iFox.hhk
+Default topic=Home\Home.htm
+Default Window=MainWindow
+Error log file=
+Display compile progress=No
+Display compile notes=No
+Full-text search=Yes
+Binary Index=No
+Auto Index=No
+Enhanced decompilation=No
+Binary TOC=No
+Flat=No
+
+[WINDOWS]
+MainWindow="iFox","iFox.hhc","iFox.hhk","","",,,,,0x40020420,190,0x303e,[0,0,620,420],0x0,0x0,,0,0,0
+
+[FILES]
+VFPScript\Introducción.htm
+HTTP\Referencia.htm
+HTTP\Introducción.htm
+FTP\Referencia.htm
+FTP\Introducción.htm
+SMTP\Referencia.htm
+SMTP\Introducción.htm
+Sockets\Referencia.htm
+Sockets\Introducción.htm
+VFPScript\Referencia.htm
+WebControls\WebHiddenControl.htm
+Upload\Introducción.htm
+WebServices\Introducción.htm
+WebControls\WebOptionGroup.htm
+WebControls\WebCheckBox.htm
+WebControls\WebListBox.htm
+WebControls\WebComboBox.htm
+WebControls\WebEditBox.htm
+WebControls\WebTextBox.htm
+WebControls\WebValidator.htm
+WebControls\WebForm.htm
+WebServices\Referencia.htm
+WebControls\Introducción.htm
+Upload\Referencia.htm
+WebControls\WebHyperLink.htm
+WebControls\WebTables\WebColumn.htm
+WebControls\WebCalendar.htm
+WebControls\WebImage.htm
+WebControls\WebTables\WebColumnProperties.htm
+Connect\Objeto_Connection.htm
+FTP\Objeto_DirFile.htm
+WebControls\WebTables\WebTable.htm
+Connect\Introducción.htm
+WebControls\WebLabel.htm
+WebControls\WebButton.htm
+WebControls\WebImageButton.htm
+WebControls\WebTables\WebRowProperties.htm
+WebControls\WebTables\WebTableProperties.htm
+SMTP\Métodos_de_envío.htm
+Download\Introducción.htm
+DirectFTP\Referencia.htm
+DirectFTP\Introducción.htm
+Resume&Go\Introducción.htm
+Resume&Go\Referencia.htm
+DirectFTP\Objeto_DirFile.htm
+XML\Referencia.htm
+XML\Introducción.htm
+Download\Referencia.htm
+DirectFTP\Ejemplos.htm
+FTP\Ejemplos.htm
+
+[MAP]
+
+[TEXT POPUPS]
+
+

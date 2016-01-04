@@ -1,0 +1,333 @@
+<html>
+<head>
+<title>FTP: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.FTP</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>DirFiles</b></td>
+        <td>Value type: <b>Collection</b> 
+          <p>After a succesful call to the <b>Dir</b> Method, this property will 
+            contain a collection of <a href="Objeto_DirFile.htm">DirFile</a> objects 
+            representing the found files.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td> 
+          <p>Value type: <b>Long</b> <br>
+          </p>
+          <p>After an error executing any method, this property will hold the 
+            related error number.<br>
+          </p>
+          <p>Error numbers can be obtained from MSDN performing a search on <b>Win32 
+            Error Codes</b>, with the exception of some <b>iFox.FTP</b> specific 
+            error codes:<br>
+            <br>
+            -101. Unable to open <b>cSource</b> file (only for <b>StartDownload</b> 
+            and <b>StartUpload</b>).<br>
+            -102. Unable to open <b>cDestination</b> file (only for <b>StartDownload</b> 
+            and <b>StartUpload</b>). <br>
+            -103. Error writing the local file (only for <b>DownloadNextPart</b>).<br>
+            -104. Communication error (only for <b>DownloadNextPart</b> and <b>UploadNextPart</b>). 
+            <br>
+            -105. Error writing the remote file (only for <b>UploadNextPart</b>). 
+          </p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>ErrorMessage</b></td>
+        <td> 
+          <p>Value type: <b>String</b> <br>
+            <br>
+            After an error executing any method, this property will hold the related 
+            error message.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>TransferredBytes</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            Indicates the amount of bytes received or sent until during the current 
+            transference.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>EOT</b></td>
+        <td>
+          <p>Value type: <b>Logical</b> <br>
+            <br>
+            Indicates if the current transfer is finished.</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>Connect</b></td>
+        <td> 
+          <p>Parameters: <strong>cServer as String, cUserName as String, cPassword 
+            as String, nPort as Integer (optional)</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+          </p>
+          <p>Establishes a connection with an FTP server. <b>cServer</b> parameter 
+            indicates the server name to use, <b>cUserName</b> and <b>cPassword</b> 
+            the user name and access password. <strong>nPort</strong> parameter 
+            indicates the port number to use; if it is not specified, the standard 
+            FTP port (21) will be used.</p>
+          <p>Return value tells if the connection has been succesfully established.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>Close</b></td>
+        <td> 
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>None</strong><br>
+            <br>
+            Closes an connection opened using the <b>Connect </b>method.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>CD</b></td>
+        <td> 
+          <p>Parameters: <strong>cDir as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Changes to the directory indicated by <b>cDir</b> parameter.</p>
+          <p>Return value indicates wether the operation has been succefully performed.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>Upload</b></td>
+        <td> 
+          <p>Parameters: <strong>cSource as String, cDestination as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Transfers the <b>cSource</b> local file to the FTP server, assigning 
+            it the <b>cDestination</b> filename. The file is binary transferred.</p>
+          <p>Return value indicates wether the operation has been succefully performed.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>StartUpload</b></td>
+        <td> 
+          <p>Parameters: <strong>cSource as String, cDestination as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Starts transferring the local file indicated by <b>cSource</b> parameter 
+            to the FTP server assigning it the name and location indicated by 
+            <b>cDestination</b>. This usage allows for transfer monitoring.</p>
+          <p> Return value indicates wether the operation has been succefully 
+            performed. Even when the return value is negative, the <b>EndUpload</b> 
+            method has to be called to release the resources in use.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>UploadNextPart</b></td>
+        <td>
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+          </p>
+          <p>Continues a transfer initiated with <b>StartUpload</b>.<br>
+            <br>
+            Return value indicates wether the operation has been succefully performed.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>EndUpload</b></td>
+        <td>Parameters: <strong>None</strong><br>
+          <br>
+          Returns: <strong>None</strong><br>
+          <br>
+          Ends a transfer initiated with <b>StartUpload</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>Download</b></td>
+        <td> 
+          <p>Parameters: <strong>cSource as String, cDestination as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+          </p>
+          <p>Downloads <b>cSource </b>remote file from an FTP server to a local 
+            drive, assigning the name indicated in parameter <b>cDestination</b>. 
+            File is binary transferred.<br>
+            <br>
+            Return value indicates wether the operation has been succefully performed.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>StartDownload</b></td>
+        <td>
+          <p>Parameters: <strong>cSource as String, cDestination as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Starts download of the file indicated by <b>cSource</b>, assigning 
+            it the <b>cDestination</b> filename. This usage allows for transfer 
+            monitoring.<br>
+            <br>
+            Return value indicates wether the operation has been succefully performed. 
+            Even when then return value is negative, the <b>EndDownload</b> method 
+            has to be called to release the resources in use.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadNextPart</b></td>
+        <td>
+          <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+          </p>
+          <p>Resumes a transfer initiated with <b>StartDownload</b>.<br>
+            <br>
+            Return value indicates wether the operation has been succefully performed.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>EndDownload</b></td>
+        <td>Parameters: <strong>None</strong><br>
+          <br>
+          Returns: <strong>None</strong><br>
+          <br>
+          Ends a transfer initiated with <b>StartDownload</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>CreateFolder</b></td>
+        <td> 
+          <p>Parameters: <strong>cFolder as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Creates a folder with the name indicated by <b>cFolder</b> parameter.</p>
+          <p>Return value indicates wether the operation has been succefully performed.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>DeleteFolder</b></td>
+        <td> 
+          <p>Parameters: <strong>cFolder as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Deletes the folder indicated by <b>cFolder</b> parameter.<br>
+            <br>
+            Return value indicates wether the operation has been succefully performed.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>DeleteFile</b></td>
+        <td> Parameters: <strong>cFile as String</strong><br>
+          <br>
+          Returns: <strong>Logical</strong><br>
+          <br>
+          Deletes the file indicated by <b>cFile </b> parameter.<br>
+          <br>
+          Return value indicates wether the operation has been succefully performed.</td>
+      </tr>
+      <tr> 
+        <td><b>RenameFile</b></td>
+        <td> 
+          <p>Parameters: <strong>cOldName as String, cNewName as String</strong><br>
+            <br>
+            Returns: <strong>Logical</strong><br>
+            <br>
+            Renames <b>cOldName</b> file assigning the name indicated by <b>cNewName</b> 
+            parameter.<br>
+            <br>
+            Return value indicates wether the operation has been succefully performed.</p>
+          </td>
+      </tr>
+      <tr> 
+        <td><b>Dir</b></td>
+        <td> 
+          <p>Parameters: <strong>cFolder as String, cMask as String</strong><br>
+            <br>
+            Returns: <strong>Integer</strong><br>
+            <br>
+            Lists the content of the folder indicated by <b>cFolder</b> parameter. 
+            <b>cMask</b> parameter indicates the mask to use. For instance: &quot;*.*&quot; 
+            or &quot;*.TXT&quot;.<br>
+            <br>
+            Return value indicates the number of found files. If an error occurs, 
+            return value will be less than zero.<br>
+            <br>
+            If the return value is greater or equal than one, <b>DirFiles</b> 
+            property will hold a <a href="Objeto_DirFile.htm">DirFile</a> objects 
+            collection representing the found files.<br>
+            <br>
+            <br>
+            <strong>Example: </strong></p>
+        <pre>nFiles = oFTP.ADir(&quot;/foldername&quot;, &quot;*.*&quot;) 
+For nCont = 1 to nFiles
+    cName = oFTP.DirFiles(nCont).FileName
+Next</pre></td>
+      </tr>
+      <tr> 
+        <td><b>VFPScriptDir</b></td>
+        <td> 
+          <p>Parameters: <strong>cFolder as String, cMask as String, aRes as Array</strong><br>
+            <br>
+            Returns: <strong>Integer</strong><br>
+          </p>
+          <p>This method is designed for situations using the <b>iFox.FTP</b> 
+            object right from VFPScript instead of instantiating it trough COM. 
+            Its working is simmilar to the one indicated by the <b>Dir</b> method, 
+            but it requires an additional parameter. <b>aRes</b> will hold a passed-by-reference 
+            array containing the found files. In this case, the <b>DirFile</b> 
+            property will be invalid.</p>
+          <p>If the return value is greater or equal than one, <b>aRes</b> array 
+            will hold a row for each found file, and the following columns:</p>
+          <p>1. FileName<br>
+            2. AlternateFileName<br>
+            3. Size<br>
+            4. CreationDate<br>
+            5. LastAccessTime<br>
+            6. LastWriteTime<br>
+            7. Attributes</p>
+          </td>
+      </tr>
+    </table>
+  </div>
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

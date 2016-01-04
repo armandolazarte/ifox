@@ -1,0 +1,354 @@
+<html>
+<head>
+<title>POP3: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.POP3</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>UserName</b></td>
+        <td>Tipo de valor: <b>String</b> 
+          <p>Nombre de usuario. Este valor ser&aacute; utilizado para efectuar 
+            la autenticaci&oacute;n con el servidor POP.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>Password</b></td>
+        <td>Tipo de valor: <b>String</b> 
+          <p>Clave de Acceso. Este valor ser&aacute; utilizado para efectuar la 
+            autenticaci&oacute;n con el servidor POP.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>MessageCount</b></td>
+        <td>Tipo de valor: <b>Integer</b> 
+          <p>Cantidad de mensajes recibidos. Este valor solamente es v&aacute;lido 
+            luego de una llamada exitosa al m&eacute;todo <b>Connect</b>.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>TotalSize</b></td>
+        <td>Tipo de valor: <b>Integer</b> 
+          <p>Tama&ntilde;o total en bytes de los mensajes recibidos. Este valor 
+            solamente es v&aacute;lido luego de una llamada exitosa al m&eacute;todo 
+            <b>Connect</b>.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadHeaders</b></td>
+        <td>Tipo de valor: <b>Logical</b> 
+          <p>Indica si al recibir un mensaje solamente debe descargarse el encabezado.</p>        </td>
+      </tr>
+      <tr> 
+        <td><b>DownloadLines</b></td>
+        <td>Tipo de valor: <b>Integer</b> <br>
+          Valor por Defecto: <b>10</b> <br>
+          <br>
+          Si la propiedad <b>DownloadHeader</b> contiene el valor Verdadero ademas 
+          del encabezado se descargar&aacute;n la cantidad de l&iacute;neas del 
+          cuerpo indicadas por esta propiedad.</td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          En caso de producirse un error esta propiedad contendr&aacute; el n&uacute;mero 
+          de error ocurrido. Los valores posibles son:<br>
+          <br>
+          1. Error de conexi&oacute;n<br>
+          2. No se ha obtenido respuesta del servidor POP3<br>
+          3. El servidor POP3 ha respondido con un mensaje de error<br>
+          4. Al intentar analizar el mensaje se ha determinado que este es inv&aacute;lido.<br>
+12. Se ha rechazado el nombre de usuario o la clave de acceso.</td>
+      </tr>
+      <tr> 
+        <td><b>POP3Response</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+          Contiene una descripci&oacute;n del error ocurrido. El valor contenido 
+          depender&aacute; del c&oacute;digo de error indicado por la propiedad 
+          <b>ErrorNumber</b>. <br>
+          <br>
+          Si el c&oacute;digo de error es 3 esta propiedad contendr&aacute; la 
+          respuesta recibida del servidor POP3. Para los otros c&oacute;digos 
+          de error esta propiedad contendr&aacute; una cadena vac&iacute;a.</td>
+      </tr>
+      <tr> 
+        <td><b>RawHeaders</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+          Contiene el encabezado del mensaje sin procesar<b></b>. Esta propiedad 
+          resulta &uacute;til si el usuario desea efectuar su propia rutina de 
+          decodificaci&oacute;n.<br>
+          <br>
+          Este valor solamente es v&aacute;lido luego de una llamada exitosa al 
+          m&eacute;todo <b>Get</b>. </td>
+      </tr>
+      <tr> 
+        <td><b>RawBody</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+          Contiene el cuerpo del mensaje sin procesar<b></b>. Esta propiedad resulta 
+          &uacute;til si el usuario desea efectuar su propia rutina de decodificaci&oacute;n.<br>
+          <br>
+          Este valor solamente es v&aacute;lido luego de una llamada exitosa al 
+          m&eacute;todo <b>Get</b>. </td>
+      </tr>
+      <tr>
+        <td><b>SentDate</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+Contiene la fecha de env&iacute;o del mensaje.<br>
+          <br>
+          Este valor solamente es v&aacute;lido luego de una llamada exitosa al 
+          m&eacute;todo <b>Get</b>. </td>
+      </tr>
+      <tr>
+        <td><b>SentTime</b></td>
+        <td>Tipo de valor: <b>String</b><br>
+          <br>
+Contiene la hora de env&iacute;o del mensaje. La hora se encuentra expresada utilizando la zona horaria del remitente. <br>
+<br>
+Este valor solamente es v&aacute;lido luego de una llamada exitosa al 
+        m&eacute;todo <b>Get</b>. </td>
+      </tr>
+      <tr>
+        <td><b>SentTimeZone</b></td>
+        <td>Tipo de valor: <b>Integer</b><br>
+          <br>
+Contiene la zona horaria del remitente. Puede utilizar este valor para ajustar el valor indicado en la propiedad <strong>SentTime</strong> a su propia zona horaria.<br>
+<br>
+Este valor solamente es v&aacute;lido luego de una llamada exitosa al 
+        m&eacute;todo <b>Get</b>. </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>Connect</b></td>
+        <td>Par&aacute;metros: <strong>cServer as String, nPort as Long </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Establece una conexi&oacute;n con un servidor POP3.<br>
+          <br>
+          El par&aacute;metro <strong>cServer</strong> debe contener el nombre 
+          o direcci&oacute;n IP de un servidor POP3. El par&aacute;metro <strong>nPort</strong> 
+          indica el n&uacute;mero de puerto a utilizar, en caso de no ser especificado 
+          se utilizar&aacute; el puerto estandar establecido en el protocolo POP3: 
+          110.<br>
+          <br>
+          Antes de liberar el objeto se debe cerrar la conexi&oacute;n utilizando 
+          el m&eacute;todo <b>Disconnect</b>.<br>
+          <br>
+          La respuesta obtenida indica si la conexi&oacute;n ha podido establecerse 
+          exitosamente.</td>
+      </tr>
+      <tr> 
+        <td><b>Disconnect</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Cierra una conexi&oacute;n establecida utilizando el m&eacute;todo <b>Connect</b>.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al intentar 
+          cerrar la conexi&oacute;n. </td>
+      </tr>
+      <tr> 
+        <td><b>Delete</b></td>
+        <td>Par&aacute;metros: <strong>nMessage as Integer </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Elimina el mensaje indicado por el par&aacute;metro <strong>nMessage</strong>. 
+          Este valor debe ser un n&uacute;mero comprendido entre 1 y el indicado 
+          por la propiedad <b>MessageCount</b>.<br>
+          <br>
+          De acuerdo a las reglas del protocolo POP3 el mensaje no es eliminado 
+          realmente hasta que se cierra la conexi&oacute;n mediante el m&eacute;todo 
+          <b>Disconnect</b>. Hasta ese momento puede ser recuperado llamando al 
+          m&eacute;todo <b>Recall</b>. Luego de eliminado un mensaje se convierte 
+          en inv&aacute;lido y cualquier intento de descargarlo solamente obtendr&aacute; 
+          un mensaje de error del servidor POP3.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al intentar 
+          ejecutar la operaci&oacute;n. </td>
+      </tr>
+      <tr> 
+        <td><b>Recall</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Recupera los mensajes eliminados durante la sesi&oacute;n activa. <br>
+          <br>
+          Luego de cerrada la conexi&oacute;n mediante el m&eacute;todo <b>Disconnect</b> 
+          los mensajes ser&aacute;n eliminados definitivamente sin existir forma 
+          de recuperarlos.<br>
+          <br>
+          De acuerdo a las reglas del protocolo POP3 <b>TODOS</b> los mensajes 
+          borrados son recuperados.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al intentar 
+          ejecutar la operaci&oacute;n. </td>
+      </tr>
+      <tr> 
+        <td><b>Test</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Este m&eacute;todo env&iacute;a un mensaje de prueba al servidor con 
+          el fin de verificar que la comunicaci&oacute;n no se ha interrumpido 
+          o que el servidor ha dejado de responder.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al intentar 
+          ejecutar la operaci&oacute;n. </td>
+      </tr>
+      <tr> 
+        <td><b>Get</b></td>
+        <td>Par&aacute;metros: <strong>nMessage as Integer </strong> 
+          <p>Respuesta: <strong>Logical</strong></p>
+          Descarga el mensaje indicado por el par&aacute;metro <strong>nMessage</strong>. 
+          Este valor debe ser un n&uacute;mero comprendido entre 1 y el indicado 
+          por la propiedad <b>MessageCount</b>.<br>
+          <br>
+          Si la propiedad <b>DownloadHeaders</b> es Verdadera solamente se descarga 
+          el encabezado del mensaje y las l&iacute;neas del cuerpo indicadas por 
+          la propiedad <b>DownloadLines</b>.<br>
+          <br>
+          La respuesta obtenida indica si se ha producido un error al intentar 
+          ejecutar la operaci&oacute;n. <br>
+          <br>
+          Al finalizar la descarga las siguientes propiedades contendr&aacute;n 
+          la siguiente informaci&oacute;n sobre el mensaje:<br>
+          <br>
+          <br>
+          <strong>RawMessage</strong><br>
+          El mensaje &quot;en bruto&quot;. Utilice esta propiedad para guardar el mensaje en formato EML o para hacer su propia decodificaci&oacute;n. <br>
+          <br>
+          <br>
+          <b>RawHeaders<br>
+          </b>Los encabezados del  mensaje &quot;en bruto&quot;.<b><br>
+          <br>
+          <br>
+          RawBody<br>
+          </b>El cuerpo  del  mensaje &quot;en bruto&quot;.<b><br>
+          <br>
+          <br>
+          SenderName<br>
+          </b>El nombre del remitente del mensaje.<b> <br>
+          <br>
+          <br>
+          SenderEMail<br>
+          </b>El EMail del remitente del mensaje.<b><br>
+          <br>
+          <br>
+          RecipientsCount<br>
+          </b>La cantidad de destinatarios del mensaje. Si se ha utilizado CCO esta cantidad puede ser cero.<b> <br>
+          <br>
+          <br>
+          Recipients <br>
+          </b>Una colecci&oacute;n con los nombres y direcciones de EMail de los destinatarios. Leer de la siguiente manera:<b> <br>
+          </b>
+<pre>For x = 1 to oPOP3.RecipientsCount<br>    cName = oPOP3.Recipients[x].ReceiverName<br>    cEMail = oPOP3.Recipients[x].ReceiverEMail<br>Next
+        </pre><b>CCCount<br>
+        </b>La cantidad de destinatarios con copia del mensaje. Si se ha utilizado CCO esta cantidad puede ser cero. <br>
+        <b><br>
+        <br>
+          CC <br>
+          </b>Una colecci&oacute;n con los nombres y direcciones de EMail de los destinatarios con copia. Leer de la siguiente manera: <br>
+          
+        <pre>For x = 1 to oPOP3.RecipientsCount<br>    cName = oPOP3.Recipients[x].ReceiverName<br>    cEMail = oPOP3.Recipients[x].ReceiverEMail<br>Next</pre>
+        <b>          Subject<br>
+        </b>El asunto del mensaje. <b><br>
+        <br>
+        <br>
+        Priority<br>
+        </b>La prioridad del mensaje. Los valores posibles son:<br>
+        1. Alta<br>
+        3. Normal<br>
+        5. Baja
+        <br>
+        <b><br>
+          <br>
+          SentDate<br>
+          </b>La fecha de env&iacute;o del mensaje indicada utilizando la zona horaria del remitente. <b><br> 
+          <br>
+          <br>
+          SentTime<br>
+          </b>La hora de env&iacute;o del mensaje indicada utilizando la zona horaria del remitente.<br>
+          <b><br>
+          <br>
+          SentTimeZone<br>
+          </b>La zona horaria del remitente. Puede utilizar esta informaci&oacute;n para ajustar la hora de env&iacute;o a cualquier zona horaria. <b><br>
+          <br>
+          <br>
+          AdjustedDate<br>
+</b>La fecha de env&iacute;o del mensaje expresada en la zona horaria indicada en el Panel de Control de Windows.<b><br>
+<br>
+<br>
+AdjustedTime<br>
+</b>La hora de env&iacute;o del mensaje expresada en la zona horaria indicada en el Panel de Control de Windows.<b> <br>
+          <br>
+          <br>
+          Body<br>
+          </b>El cuerpo del mensaje en formato de texto plano. Solamente disponible si el programa remitente ha codificado el mensaje en este formato. <br>
+          <b><br>
+          <br>
+          HTMLBody<br>
+          </b>El cuerpo del mensaje en formato HTML. Solamente disponible si el programa remitente ha codificado el mensaje en este formato. <br>
+          <b><br>
+          <br>
+          AttachmentsCount<br>
+          </b>La cantidad de archivos adjuntos al mensaje.<b> <br>
+          <br>
+          <br>
+          Attachments</b><br>
+          Una colecci&oacute;n conteniendo los archivos adjuntos.<br>
+          Leer de la siguiente manera: <br>
+          <pre>For x = 1 to oPOP3.AttachmentsCount<br>    cName = oPOP3.Attachments[x].FileName<br>    nSize = oPOP3.Attachments[x].FileSize<br>Next</pre>
+          <b><br>
+ResourcesCount<br>
+          </b>La cantidad de archivos embebidos en el mensaje, por ejemplo: im&aacute;genes o sonidos.<b> <br>
+          <br>
+          <br> 
+          Resources
+</b><br>
+Una colecci&oacute;n conteniendo los archivos embebidos.<br>
+Leer de la siguiente manera: <br>
+<pre>For x = 1 to oPOP3.ResourcesCount<br>    cName = oPOP3.Resources[x].FileName<br>    cContent = oPOP3.Resources[x].Content<br>    cID = oPOP3.Resources[x].ID<br>Next</pre></td>
+      </tr>
+      <tr>
+        <td><strong>ParseMessage</strong></td>
+        <td>Par&aacute;metros: <strong>cMessage as String </strong>
+          <p>Respuesta: <strong>Logical</strong></p>
+          Permite decodificar un mensaje almacenado previamente pasando su contenido como par&aacute;metro. La respuesta obtenida indicar&aacute; si se ha podido interpretarlo correctamente. Se establecen todas las propiedades indicadas en la documentaci&oacute;n del m&eacute;todo <strong>Get</strong>. </td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

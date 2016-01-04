@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Ejemplos</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.DirectFTP</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Ejemplos</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  Los siguientes son ejemplos de diferentes modalidades de uso de <b>iFox.DirectFTP</b><br>
+  <br>
+  <br>
+  <b>Ejemplo 1</b>: Transferir un archivo a un servidor FTP.<br>
+  <br>
+  <pre>oFTP = CreateObject(&quot;iFox.DirectFTP&quot;)<br>If oFTP.Connect(&quot;ftp.server.com&quot;, &quot;usuario&quot;, &quot;xxxx&quot;)<br>   oFTP.Upload(&quot;C:\DATA.ZIP&quot;, &quot;/ARCHIVES/DATA.ZIP&quot;)<br>   oFTP.Close()<br>Endif</pre>
+  <br>
+  <b>Ejemplo 2</b>: Descargar un archivo y monitorear el progreso.<br>
+  <br>
+  <pre>oFTP = CreateObject(&quot;iFox.DirectFTP&quot;)<br>If oFTP.Connect(&quot;ftp.server.com&quot;, &quot;usuario&quot;, &quot;xxxx&quot;)
+
+   If oFTP.Startdownload(&quot;/ARCHIVES/DATA.ZIP&quot;, &quot;C:\DATA.ZIP&quot;)<br><br>      Do While !oFTP.EOT<br>         If oFTP.DownloadNextPart()<br>            ? &quot;Transferido: &quot; + Str(oFTP.TransferredBytes)<br>         else<br>            ? &quot;Error&quot;<br>         Endif<br>      Enddo<br><br>   else<br>      ? &quot;Error&quot;<br>   Endif<br><br>   oFTP.Enddownload()
+
+   oFTP.Close()<br><br>Endif</pre>
+  <br>
+  <b>Ejemplo 3</b>: Continuar una transferencia interrumpida.<br>
+  <br>
+  <pre>oFTP = CreateObject(&quot;iFox.DirectFTP&quot;)<br>If oFTP.Connect(&quot;ftp.server.com&quot;, &quot;usuario&quot;, &quot;xxxx&quot;)
+
+   * Descargar los primeros 50000 bytes<br>   If oFTP.Startdownload(&quot;/ARCHIVES/DATA.ZIP&quot;, &quot;C:\DATA.ZIP&quot;)<br>      Do While !oFTP.EOT<br>         If oFTP.TransferredBytes &gt; 50000<br>            oFTP.AbortTransfer()<br>            Exit<br>         Endif<br>      Enddo<br>   Endif<br>   oFTP.Enddownload()
+
+   * Descargar el resto del archivo<br>   If oFTP.Startdownload(&quot;/ARCHIVES/DATA.ZIP&quot;, &quot;C:\DATA.ZIP&quot;, 50000)<br>      Do While !oFTP.EOT<br>      Enddo<br>   Endif<br>   oFTP.Enddownload()
+
+   oFTP.Close()<br>Endif<br></pre>
+</div>
+<hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

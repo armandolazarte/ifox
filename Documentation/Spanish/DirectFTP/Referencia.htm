@@ -1,0 +1,408 @@
+<html>
+<head>
+<title>DirectFTP: Referencia</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.DirectFTP</i></span></td>
+</tr>
+<tr>
+<td><span style="font:10pt Verdana"><b>Referencia</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+
+
+
+<b>Propiedades</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr>
+        <td><b>DirFiles</b></td>
+        <td>Tipo de valor: <b>Colecci&oacute;n</b> <br>
+          <br>
+          Luego de una llamada exitosa al m&eacute;todo <b>Dir</b> este m&eacute;todo 
+          contendr&aacute; una colecci&oacute;n de objetos <a href="Objeto_DirFile.htm">DirFile</a> 
+          representando los archivos encontrados<br>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>ErrorNumber</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          En caso de producirse un error esta propiedad contendr&aacute; el n&uacute;mero 
+          de error ocurrido. Los valores posibles son:<br>
+          <br>
+          1. Imposible inicializar <b>iFox.Sockets</b>.<br>
+          2. Imposible obtener la direcci&oacute;n IP del servidor indicado.<br>
+          3. Imposible establecer comunicaci&oacute;n con el servidor indicado.<br>
+          4. Error de comunicaci&oacute;n.<br>
+          5. El servidor FTP no ha aceptado la conexi&oacute;n.<br>
+          6. El servidor FTP ha rechazado la el nombre de usuario.<br>
+          7. El servidor FTP ha rechazado la clave de acceso.<br>
+          8. El servidor FTP no ha podido cerrar apropiadamente la sesi&oacute;n.<br>
+          9. Se ha producido un error al intentar ejecutar el comando.<br>
+          10. No se ha podido recuperar o enviar la informaci&oacute;n al servidor 
+          FTP debido a un problema de conexi&oacute;n.<br>
+          <br>
+          101. Imposible abrir el archivo <b>cDestination</b> (s&oacute;lo en 
+          <b>Download</b> y <b>StartDownload</b>).<br>
+          102. El servidor no acepta descargas parciales (s&oacute;lo en <b>Download</b> 
+          y <b>StartDownload</b>).<br>
+          103. Se ha producido un error de escritura (s&oacute;lo en <b>Download</b> 
+          y <b>DownloadNextPart</b>).<br>
+          104. Imposible abrir el archivo <b>cSource</b> (s&oacute;lo en <b>Upload</b> 
+          y <b>StartUpload</b>). <br>
+          105. No se puede crear el archivo <b>cDestination</b> o el servidor 
+          no soporta subidas parciales (s&oacute;lo en <b>Upload</b> y <b>StartUpload</b>).</td>
+      </tr>
+      <tr> 
+        <td><b>Response</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Contiene la respuesta obtenida al ejecutar el &uacute;ltimo comando. 
+          Esta respuesta ya ha sido procesada y no contiene informaci&oacute;n 
+          adicional de control por lo que es la que usualmente se utiliza. Para 
+          obtener la respuesta original obtenida del servidor FTP utilice la propiedad 
+          <b>FTPResponseText</b>. </td>
+      </tr>
+      <tr> 
+        <td><b>FTPResponseCode</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          Contiene el c&oacute;digo de respuesta obtenido del servidor FTP. Este 
+          valor puede utilizarse para obtener mayor informaci&oacute;n de un error 
+          ocurrido. Los valores obtenidos se ajustar&aacute;n a lo indicado en 
+          la RFC 959.</td>
+      </tr>
+      <tr> 
+        <td><b>FTPResponseText</b></td>
+        <td>Tipo de valor: <b>String</b> <br>
+          <br>
+          Contiene el texto de la respuesta obtenida del servidor FTP. Este valor 
+          puede utilizarse para obtener mayor informaci&oacute;n de un error ocurrido.</td>
+      </tr>
+      <tr> 
+        <td><b>TransferredBytes</b></td>
+        <td>Tipo de valor: <b>Long</b> <br>
+          <br>
+          Indica la cantidad de bytes enviados o recibidos hasta el momento.</td>
+      </tr>
+      <tr> 
+        <td><b>EOT</b></td>
+        <td>Tipo de valor: <b>Logical</b> <br>
+          <br>
+          Indica si la transferencia en curso ha finalizado.</td>
+      </tr>
+    </table>
+  </div>
+
+
+
+<br><br><b>M&eacute;todos</b>
+<div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Nombre</th>
+        <th>Descripci&oacute;n</th>
+      </tr>
+      <tr> 
+        <td><b>Connect</b></td>
+        <td> Par&aacute;metros: <strong>cServer as String, cUserName as String, 
+          cPassword as String, nPort as Integer (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Establece una conexi&oacute;n con un servidor FTP. El par&aacute;metro 
+          <strong>cServer</strong> indica el nombre del servidor a utilizar, <strong>cUserName</strong> 
+          y <strong>cPassword</strong> el nombre de usuario y la clave de acceso. 
+          El par&aacute;metro <strong>nPort</strong> indica el n&uacute;mero de 
+          puerto a utilizar, en caso de no ser especificado se utilizar&aacute; 
+          el puerto estandar establecido en el protocolo FTP: 21.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la conexi&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>Close</b></td>
+        <td> Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Cierra una conexi&oacute;n abierta utlizando el m&eacute;todo <b>Connect</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>System</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Permite determinar el tipo de sistema operativo que utiliza el servidor. 
+          Si la respuesta es afirmativa la propiedad <b>Response</b> contendr&aacute; 
+          la respuesta obtenida.</td>
+      </tr>
+      <tr> 
+        <td><b>CD</b></td>
+        <td> 
+          <p>Par&aacute;metros: <strong>cDir as String (opcional)</strong><br>
+            <br>
+            Respuesta: <strong>Logical</strong><br>
+            <br>
+            Si se ha especificado el par&aacute;metro <b>cDir</b>: </p>
+          <blockquote> Cambia al directorio indicado por el par&aacute;metro <b>cDir</b>.<br>
+            <br>
+            La respuesta obtenida indicar&aacute; si se ha podido efectuar la 
+            operaci&oacute;n exitosamente.<br>
+            <br>
+          </blockquote>
+          <p>Si no se ha especificado el par&aacute;metro <b>cDir</b>: </p>
+          <blockquote> Determina el directorio actual<b></b>.<br>
+            <br>
+            La respuesta obtenida indicar&aacute; si se ha podido efectuar la 
+            operaci&oacute;n exitosamente. La propiedad <b>Response</b> contendr&aacute; 
+            el nombre del directorio actual.</blockquote>
+        </td>
+      </tr>
+      <tr> 
+        <td><b>CreateFolder</b></td>
+        <td> Par&aacute;metros: <strong>cFolder as String</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Crea una carpeta con el nombre indicado en el par&aacute;metro <strong>cFolder</strong>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>DeleteFolder</b></td>
+        <td> Par&aacute;metros: <strong>cFolder as String</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Elimina la carpeta indicada en el par&aacute;metro <strong>cFolder</strong>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>DeleteFile</b></td>
+        <td> Par&aacute;metros: <strong>cFile as String</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Elimina el archivo indicado en el par&aacute;metro <strong>cFile</strong>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>RenameFile</b></td>
+        <td> Par&aacute;metros: <strong>cOldName as String, cNewName as String</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Renombra el archivo <strong>cOldName</strong> asignandole el nombre 
+          indicado por el par&aacute;metro <strong>cNewName</strong>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>MoveFile</b></td>
+        <td>Par&aacute;metros: <strong>cOldName as String, cNewName as String</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Mueve el archivo <strong>cOldName</strong> asignandole el nombre y la 
+          localizaci&oacute;n indicadas por el par&aacute;metro <strong>cNewName</strong>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>Download</b></td>
+        <td>Par&aacute;metros: <strong>cSource as String, cDestination as String, 
+          nStart as Long (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Descarga el archivo indicado por el par&aacute;metro <b>cSource</b> 
+          asignandole el nombre <b>cDestination</b>.<br>
+          <br>
+          El par&aacute;metro <b>nStart</b> indica que se debe efecutar una transferencia 
+          parcial comenzando en el byte indicado. <b>nStart</b> debe ser un valor 
+          entre 0 y el largo del archivo - 1. Si <b>nStart</b> no es indicado 
+          o contiene el valor cero el archivo ser&aacute; descargado completamente, 
+          en este caso si <b>cDestination</b> existe ser&aacute; eliminado. Si 
+          <b>nStart</b> contiene un valor distinto de cero la descarga parcial 
+          se agrega al contenido del archivo <b>cDestination</b>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>StartDownload</b></td>
+        <td>Par&aacute;metros: <strong>cSource as String, cDestination as String, 
+          nStart as Long (opcional)</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Comienza la descarga del archivo indicado por el par&aacute;metro <b>cSource</b> 
+          asignandole el nombre <b>cDestination</b>. Esta forma de utilizaci&oacute;n 
+          permite monitorear la transferencia.<br>
+          <br>
+          El par&aacute;metro <b>nStart</b> indica que se debe efecutar una transferencia 
+          parcial comenzando en el byte indicado. <b>nStart</b> debe ser un valor 
+          entre 0 y largoarchivo - 1. Si <b>nStart</b> no es indicado o contiene 
+          el valor cero el archivo ser&aacute; descargado completamente, en este 
+          caso si <b>cDestination</b> existe ser&aacute; eliminado. Si <b>nStart</b> 
+          contiene un valor distinto de cero la descarga parcial se agrega al 
+          contenido del archivo <b>cDestination</b>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. Aunque la respuesta haya sido negativa se debe llamar 
+          al m&eacute;todo <b>EndDownload</b> para liberar los recursos utilizados.</td>
+      </tr>
+      <tr> 
+        <td><b>DownloadNextPart</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Contin&uacute;a una transferencia iniciada con <b>StartDownload</b>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>EndDownload</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Finaliza una transferencia iniciada con <b>StartDownload</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>Upload</b></td>
+        <td>Par&aacute;metros: <strong>cSource as String, cDestination as String, 
+          lAppend as Logical</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Transfiere el archivo local indicado por el par&aacute;metro <b>cSource</b> 
+          al servidor FTP asignandole el nombre y localizaci&oacute;n indicados 
+          en <b>cDestination</b>.<br>
+          <br>
+          El par&aacute;metro <b>lAppend</b> indica el archivo de destino no se 
+          debe eliminar y que el contenido de <b>cSource</b> debe agregarse al 
+          contenido existente.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>StartUpload</b></td>
+        <td>Par&aacute;metros: <strong>cSource as String, cDestination as String, 
+          lAppend as Logical</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Comienza la transferencia del archivo local indicado por el par&aacute;metro 
+          <b>cSource</b> al servidor FTP asignandole el nombre y localizaci&oacute;n 
+          indicados en <b>cDestination</b>. Esta forma de utilizaci&oacute;n permite 
+          monitorear la transferencia.<br>
+          <br>
+          El par&aacute;metro <b>lAppend</b> indica el archivo de destino no se 
+          debe eliminar y que el contenido de <b>cSource</b> debe agregarse al 
+          contenido existente.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. Aunque la respuesta haya sido negativa se debe llamar 
+          al m&eacute;todo <b>EndUpload</b> para liberar los recursos utilizados.</td>
+      </tr>
+      <tr> 
+        <td><b>UploadNextPart</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Contin&uacute;a una transferencia iniciada con <b>StartUpload</b>.<br>
+          <br>
+          La respuesta obtenida indicar&aacute; si se ha podido efectuar la operaci&oacute;n 
+          exitosamente. </td>
+      </tr>
+      <tr> 
+        <td><b>EndUpload</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Ninguna</strong><br>
+          <br>
+          Finaliza una transferencia iniciada con <b>StartUpload</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>AbortTransfer</b></td>
+        <td>Par&aacute;metros: <strong>Ninguno</strong><br>
+          <br>
+          Respuesta: <strong>Logical</strong><br>
+          <br>
+          Cancela una transferencia iniciada con <b>StartDownload</b> o <b>StartUpload</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>Dir</b></td>
+        <td>Par&aacute;metros: <strong>cFolder as String </strong> 
+          <p>Respuesta: <strong>Integer</strong></p>
+          <p>Lista el contenido de la carpeta indicada en el par&aacute;metro 
+            <b>cFolder</b>.</p>
+          <p>La respuesta obtenida indica la cantidad de archivos encontrados. 
+            En caso de producirse un error el valor devuelto ser&aacute; negativo.</p>
+          <p>Si el valor devuelto es mayor o igual a uno la propiedad <b>DirFiles</b> 
+            contendr&aacute; una colecci&oacute;n de objetos <a href="Objeto_DirFile.htm">DirFile</a> 
+            representando los archivos encontrados.<br>
+            <br>
+            <br>
+            <strong>Ejemplo: </strong></p>
+          <pre>nFiles = oFTP.ADir(&quot;/foldername&quot;) 
+For nCont = 1 to nFiles
+    cName = oFTP.DirFiles(nCont).FileName
+Next </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><b>VFPScriptDir</b></td>
+        <td>Par&aacute;metros: <strong>cFolder as String, aRes as Array </strong> 
+          <p>Respuesta: <strong>Integer</strong></p>
+          <p>Este m&eacute;todo ha sido dise&ntilde;ado en el caso de utilizar 
+            un objeto <b>iFox.DirectFTP</b> directamente desde VFPScript en lugar 
+            de instanciarlo a trav&eacute;s de COM. El funcionamiento es similar 
+            al indicado para el m&eacute;todo <b>Dir</b> pero se requiere un par&aacute;metro 
+            m&aacute;s. <strong>aRes</strong> contendr&aacute; un array pasado 
+            por refencia que contendr&aacute; los archivos encontrados. En este 
+            caso el contenido de la propiedad <b>DirFile</b> ser&aacute; inv&aacute;lido.</p>
+          <p>Si el valor devuelto es mayor o igual a uno el array <strong>aRes</strong> 
+            contendr&aacute; una fila por cada archivo encontrado y las siguientes 
+            columnas:</p>
+          <p>1. FileName<br>
+            2. Size<br>
+            3. LastWriteTime<br>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>

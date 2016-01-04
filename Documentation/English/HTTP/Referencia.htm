@@ -1,0 +1,247 @@
+<html>
+<head>
+<title>HTTP: Reference</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<LINK rel="stylesheet" type="text/css" href="ifox.css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000" topmargin=0 leftmargin=0>
+<table border=0 width="100%" bgcolor="lightblue" class="top">
+<tr>
+<td valign="center"><span style="font:8pt Verdana"><i>iFox.HTTP</i></span></td>
+</tr>
+<tr>
+    <td><span style="font:10pt Verdana"><b>Reference</b></span></td>
+</tr>
+</table>
+<div class=text><br>
+  <b>Properties</b> 
+  <div class=tablediv><table class=htmltable cellspacing="0">
+<tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+</tr>
+
+<tr> 
+<td><b>ErrorNumber</b></td>
+        <td>
+          <p>Value type: <b>Long</b> <br>
+            <br>
+            When an error occurs executing any of the component methods, this 
+            property will hold the related error number.</p>          </td>
+</tr>
+<tr>
+  <td><strong>ConnectionType</strong></td>
+  <td>Value type: <b>Integer</b> <br>
+    <br>
+The type of connection to use. The allowed values are: <br>
+<br>
+0. The configuration set in the Internet Options applet of Window's Control Panel. This is the default value.<br>
+1. Direct connection.<br>
+3. Access through a proxy.</td>
+</tr>
+<tr>
+  <td><strong>ProxyServer</strong></td>
+  <td>Value type:<b> String </b><br>
+    <br>
+The IP adress (and optionally the port number) of the proxy server to use when the <strong>ConnectionType</strong> property has a value of 3. <br>
+<br>
+<strong>Examples: </strong> <br>
+192.168.0.90<br>
+192.168.0.90:750</td>
+</tr>
+<tr>
+  <td><strong>ProxyUserName</strong></td>
+  <td>Value typer:<b> String </b><br>
+    <br>
+The user name used to log on to the proxy server when the <strong>ConnectionType</strong> property has a value of 3. If the proxy server does not requires authentication set this property to an empty string.</td>
+</tr>
+<tr>
+  <td><strong>ProxyPassword</strong></td>
+  <td>Value type:<b> String </b><br>
+    <br>
+    The password used to log on to the proxy server when the <strong>ConnectionType</strong> property has a value of 3. If the proxy server does not requires authentication set this property to an empty string.</td>
+</tr>
+<tr>
+  <td><strong>IgnoreSSLErrors</strong></td>
+  <td>Value type :<b> Logical </b><br>
+    <br>
+    Request access to pages with problems in their security certificate. Allow this access not necessarily involves a risk, wich will depend in the type of problem of the certificate (wich you can see browsing the site) and the trust you have in the general security of the web site.<br>
+<br>
+The default value of this property is <strong>False</strong>. </td>
+</tr>
+<tr>
+  <td><b>TransferSize</b></td>
+  <td>Value type: <b>Long</b> <br>
+    <br>
+After a successful call to <strong>StartAsyncGet</strong> o <strong>StartAsyncPost</strong> contains the amount of bytes to transfer. This information is useful to build a progress bar. </td>
+</tr>
+<tr>
+  <td><b>CompletedTransfer</b></td>
+  <td>Value type: <b>Long</b> <br>
+    <br>
+    After a successful call to <strong>StartAsyncGet</strong> o <strong>StartAsyncPost</strong> contains the amount of bytes already transferred. This information is useful to build a progress bar. </td>
+</tr>
+<tr>
+  <td><b>EOT</b></td>
+  <td>Value type: <b>Logical</b> <br>
+    <br>
+    After a successful call to <strong>StartAsyncGet</strong> o <strong>StartAsyncPost</strong>indicates if the transfer has being finished. </td>
+</tr>
+
+</table>
+  </div>
+
+
+
+<br><br>
+  <b>Methods</b> 
+  <div class=tablediv>
+    <table class=htmltable cellspacing="0">
+      <tr> 
+        <th width=100>Name</th>
+        <th>Description</th>
+      </tr>
+      <tr> 
+        <td><b>Get</b></td>
+        <td> <p>Parameters: <strong>cURL as String</strong><br>
+            <br>
+            Returns: <strong>String</strong><br>
+            <br>
+            Returns the content of the URL indicated by the <b>cURL</b> parameter.</p></td>
+      </tr>
+      <tr>
+        <td><b>StartAsyncGet</b></td>
+        <td>Parameters: <strong>cURL as String</strong><br>
+          <br>
+          Returns: <strong>Logical</strong><br>
+<br>
+Returns the content of the URL indicated by the <b>cURL</b> parameter asynchronically. This method allows to monitor the transfer 
+        progress.</td>
+      </tr>
+      <tr>
+        <td><strong>ContinueAsyncGet</strong></td>
+        <td>Parameters: <strong>None</strong><br>
+          <br>
+          Returns: <strong>Logical</strong><br>
+<br> 
+Continues a transfer started by
+<b> StartAsyncGet</b>. Call this method repeatedly until the <strong>EOT</strong> property is set to <strong>True</strong>. <br>
+<br>
+The value returned indicates if the operation was succesful.</td>
+      </tr>
+      <tr>
+        <td><strong>EndAsyncGet</strong></td>
+        <td>Parameters: <strong>None</strong><br>
+          <br>
+          Returns: <strong>Ninguna</strong><br>
+<br>
+Ends the transfer started by <b>StartAsyncGet</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>ClearPostFields</b></td>
+        <td> <p>Parameters: <strong>None</strong><br>
+            <br>
+            Returns: <strong>None</strong><br>
+            <br>
+            Reinitializes the object and prepares it for sending another form.</p></td>
+      </tr>
+      <tr> 
+        <td><b>AddPostField</b></td>
+        <td> <p>Parameters: <strong>cField as String, cValue as String</strong><br>
+            <br>
+            Returns: <strong>None</strong><br>
+            <br>
+            Adds a field to a &quot;virtual&quot; form that will be later used 
+            to simulate a data entry on a web page.</p>
+          <p>The <b>cField</b> parameter indicates the field name and <b>cValue</b> 
+            indicates its content.</p></td>
+      </tr>
+      <tr> 
+        <td><b>AddPostFile</b></td>
+        <td> <p>Parameters: <strong>cField as String, cFile as String</strong><br>
+            <br>
+            Returns: <strong>None</strong><br>
+            <br>
+            Simmilar to the <b>AddPostField</b> method, but using a <b>File</b> 
+            type field to upload a file.</p></td>
+      </tr>
+      <tr>
+        <td><strong>AddPostFieldasFile</strong></td>
+        <td>Parameters: <strong>cField as String, cValue as String, cFile as String</strong><br> <br>
+          Returns: <strong>None</strong><br> <br>
+          Simmiliar to the <b>AddPostFile</b> method, but instead of using a real 
+          file simulates it. The <strong>cValue </strong>parameter should be stablished 
+          with the file content, while the <strong>cFile</strong> parameter indicates 
+          the file name to use.</td>
+      </tr>
+      <tr> 
+        <td><b>Post</b></td>
+        <td> <p>Parameters: <strong>cServer as String, cURL as String, cUsername 
+            as String (optional), cPassword as String (optional), nPort as Long 
+            (optional) </strong><br>
+            <br>
+            Returns: <strong>String</strong><br>
+            <br>
+            Simulates sending a web form using the fields assigned by the <b>AddPostField</b> 
+            and <b>AddPostFile</b> methods.<br>
+            <br>
+            <b>cServer</b> and <b>cURL</b> parameteres indicates the server name 
+            and URL (obviously excluding the server name) where the page which 
+            will receive the input is located.<br>
+          </p>
+          <p>If needed, it is possible to pass a user name and password to use 
+            trough the <b>cUserName</b> and<b> cPassword</b> parameters.<br>
+            <br>
+            Parameter <b>nPort</b> indicates the port numer to use. If not specified, 
+            the standard port for the HTTP protocol (80) would be used.</p></td>
+      </tr>
+      <tr>
+        <td><strong>StartAsyncPost</strong></td>
+        <td>Parameters: <strong>cServer as String, cURL as String, cUsername 
+            as String (optional), cPassword as String (optional), nPort as Long 
+            (optional) </strong><br>
+          <br>
+Returns: <strong>Logical</strong><br>
+<br>
+Simulates sending a web form using the fields assigned by the <b>AddPostField</b> and <b>AddPostFile</b> methods asynchronically. This method allows to monitor the transfer 
+        progress.</td>
+      </tr>
+      <tr>
+        <td><strong>ContinueAsyncPost</strong></td>
+        <td>Parameters: <strong>None</strong><br>
+          <br>
+Returns: <strong>Logical</strong><br>
+<br>
+Continues a transfer started by <b> StartAsyncPost</b>. Call this method repeatedly until the <strong>EOT</strong> property is set to <strong>True</strong>. <br>
+<br>
+The value returned indicates if the operation was succesful.</td>
+      </tr>
+      <tr>
+        <td><strong>EndAsyncPost</strong></td>
+        <td>Parameters: <strong>None</strong><br>
+          <br>
+Returns: <strong>Ninguna</strong><br>
+<br>
+Ends the transfer started by <b>StartAsyncPost</b>.</td>
+      </tr>
+      <tr> 
+        <td><b>URLEncode</b></td>
+        <td> <p>Parameters: <strong>cURL as String</strong><br>
+            <br>
+            Returns: <strong>String</strong><br>
+            <br>
+            Encodes the string sent in the <b>cURL</b> parameter to make sure 
+            it is a valid URL; for instance, it replaces spaces with %20.</p></td>
+      </tr>
+    </table>
+  </div>
+
+
+
+</div><br><hr noshade size=1 width="100%">
+&nbsp;E-Mail: <a href="mailto:ifox@coliseosoftware.com.ar">ifox@coliseosoftware.com.ar</a><br><br>
+&nbsp;(C) <b>Pablo Pioli / Coliseo Software</b>
+
+</body>
+</html>
